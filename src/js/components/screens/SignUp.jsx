@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const Login = () => {
+const SignUp = () => {
 
   const handleSubmit = () => {
     console.log("TODO")
@@ -22,9 +22,16 @@ const Login = () => {
           }}
         >
           <Typography variant="h5">
-            Welcome to Workout App
+            Create an account
           </Typography>
           <Box>
+          <TextField
+              margin='normal'
+              required
+              fullWidth
+              label='Name'
+              autoFocus
+            />
             <TextField
               margin='normal'
               required
@@ -42,19 +49,29 @@ const Login = () => {
               autoComplete='current-password'
               autoFocus
             />
+            <TextField
+              margin='normal'
+              required
+              fullWidth
+              label='Repeat password'
+              type='password'
+              autoComplete='current-password'
+              autoFocus
+            />
             <Button
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Log In
+              Sign Up
             </Button>
             <Button
               fullWidth
               variant="outlined"
+              color="error"
               sx={{ mb: 2 }}
             >
-              create account
+              Cancel
             </Button>
           </Box>
         </Box>
@@ -62,4 +79,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default SignUp;

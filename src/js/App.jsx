@@ -1,8 +1,12 @@
-import Login from "./components/screens/Login";
+//import Login from "./components/screens/Login";
+import SignUp from "./components/screens/SignUp";
 
 const App =() => {
   return(
-    <Login />
+    <>
+      <SignUp />
+    </>
+
   );
 }
 
