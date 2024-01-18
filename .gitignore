@@ -1,0 +1,23 @@
+# Monaca
+/.monaca/*
+!/.monaca/project_info.json
+/platforms
+# native
+ios/
+android/
+# other
+.idea/
+node_modules/
+.vscode/
+*.map
+.DS_Store
+.sourcemaps
+*.swp
+typings/
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -1,0 +1,42 @@
+{
+  "name": "capacitor-app",
+  "version": "1.0.0",
+  "description": "An Amazing Capacitor App",
+  "main": "index.js",
+  "engines": {
+    "node": "~18.16.0",
+    "yarn": "^1.0.0 || ~4.0.2"
+  },
+  "packageManager": "yarn@4.0.2",
+  "keywords": [
+    "capacitor",
+    "mobile"
+  ],
+  "scripts": {
+    "monaca:preview": "yarn dev & yarn watch",
+    "monaca:transpile": "yarn build",
+    "monaca:debug": "yarn watch",
+    "monaca:trapeze-android": "trapeze run config.yaml -y --android-project android",
+    "monaca:trapeze-ios": "trapeze run config.yaml -y --ios-project ios/App",
+    "dev": "cross-env NODE_ENV=development vite",
+    "watch": "cross-env NODE_ENV=development vite build --watch",
+    "build": "cross-env NODE_ENV=production vite build"
+  },
+  "dependencies": {
+    "@capacitor/android": "5.5.1",
+    "@capacitor/camera": "5.0.7",
+    "@capacitor/core": "5.5.1",
+    "@capacitor/ios": "5.5.1",
+    "@capacitor/splash-screen": "5.0.6"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "3.0.1",
+    "@capacitor/cli": "5.5.1",
+    "@trapezedev/configure": "7.0.10",
+    "cross-env": "^7.0.3",
+    "fs-extra": "11.2.0",
+    "vite": "5.0.6"
+  },
+  "author": "",
+  "license": "ISC"
+}
