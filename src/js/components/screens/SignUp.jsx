@@ -38,7 +38,6 @@ const SignUp = () => {
               fullWidth
               label='Email'
               autoComplete='email'
-              autoFocus
             />
             <TextField
               margin='normal'
@@ -47,7 +46,6 @@ const SignUp = () => {
               label='Password'
               type='password'
               autoComplete='current-password'
-              autoFocus
             />
             <TextField
               margin='normal'
@@ -56,7 +54,6 @@ const SignUp = () => {
               label='Repeat password'
               type='password'
               autoComplete='current-password'
-              autoFocus
             />
             <Button
               fullWidth

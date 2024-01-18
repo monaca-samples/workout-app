@@ -40,7 +40,6 @@ const Login = () => {
               label='Password'
               type='password'
               autoComplete='current-password'
-              autoFocus
             />
             <Button
               fullWidth
