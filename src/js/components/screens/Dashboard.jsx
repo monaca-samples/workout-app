@@ -8,8 +8,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,8 +17,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+
+import Bar from '../Bar';
 
 const Dashboard = () => {
   const [drawerAnchor, setDrawerAnchor] = useState(false);
@@ -41,25 +39,8 @@ const Dashboard = () => {
   return(
     <Box sx={{ display: 'flex' }}>
 
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open-drawer"
-              onClick={ toggleDrawer(true) }
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Dashboard
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Box>
+      <Bar title={'Dashboard'} toggleDrawer={toggleDrawer}/>
+
       <SwipeableDrawer
         anchor={"left"}
         open={drawerAnchor}
