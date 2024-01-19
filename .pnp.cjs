@@ -35,6 +35,7 @@ const RAW_RUNTIME_STATE =
           ["@capacitor/splash-screen", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.0.6"],\
           ["@emotion/react", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:11.11.3"],\
           ["@emotion/styled", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:11.11.0"],\
+          ["@mui/icons-material", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@mui/material", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@trapezedev/configure", "npm:7.0.10"],\
           ["@types/react", "npm:18.2.48"],\
@@ -1235,6 +1236,33 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@mui/icons-material", [\
+      ["npm:5.15.5", {\
+        "packageLocation": "../../.yarn/berry/cache/@mui-icons-material-npm-5.15.5-4ff0024be9-10c0.zip/node_modules/@mui/icons-material/",\
+        "packageDependencies": [\
+          ["@mui/icons-material", "npm:5.15.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5", {\
+        "packageLocation": "./.yarn/__virtual__/@mui-icons-material-virtual-6adc60609d/3/.yarn/berry/cache/@mui-icons-material-npm-5.15.5-4ff0024be9-10c0.zip/node_modules/@mui/icons-material/",\
+        "packageDependencies": [\
+          ["@mui/icons-material", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
+          ["@babel/runtime", "npm:7.23.8"],\
+          ["@mui/material", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
+          ["@types/mui__material", null],\
+          ["@types/react", "npm:18.2.48"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@mui/material",\
+          "@types/mui__material",\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@mui/material", [\
       ["npm:5.15.5", {\
         "packageLocation": "../../.yarn/berry/cache/@mui-material-npm-5.15.5-a6ffdbb571-10c0.zip/node_modules/@mui/material/",\
@@ -2423,6 +2451,7 @@ const RAW_RUNTIME_STATE =
           ["@capacitor/splash-screen", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.0.6"],\
           ["@emotion/react", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:11.11.3"],\
           ["@emotion/styled", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:11.11.0"],\
+          ["@mui/icons-material", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@mui/material", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@trapezedev/configure", "npm:7.0.10"],\
           ["@types/react", "npm:18.2.48"],\
