@@ -10,6 +10,9 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Container from '@mui/material/Container';
@@ -64,15 +67,38 @@ const Dashboard = () => {
         onClose={ toggleDrawer(false) }
       >
         <List>
-          {['Profile', 'Routine', 'Search Exercise'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+          <ListItem sx={{ display: 'block' }} key={'profile'} disablePadding>
+            <Link to={'/Dashboard'} style={{ textDecoration: 'none' }}>
               <ListItemButton>
-                <ListItemText primary={text} />
+                <ListItemIcon>
+                  <AccountCircleIcon/>
+                </ListItemIcon>
+                <ListItemText sx={{ color: 'black'}} primary={'Profile'} />
               </ListItemButton>
-            </ListItem>
-          ))}
+            </Link>
+          </ListItem>
+          <ListItem sx={{ display: 'block' }} key={'routine'} disablePadding>
+            <Link to={'/Dashboard'} style={{ textDecoration: 'none' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <FitnessCenterIcon/>
+                </ListItemIcon>
+                <ListItemText sx={{ color: 'black'}} primary={'Routine'} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+          <ListItem sx={{ display: 'block' }} key={'search'} disablePadding>
+            <Link to={'/Dashboard'} style={{ textDecoration: 'none' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <SearchIcon/>
+                </ListItemIcon>
+                <ListItemText sx={{ color: 'black', mr: 2 }} primary={'Search Exercises'} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
           <Divider />
-          <ListItem key={'logout'} disablePadding>
+          <ListItem sx={{ display: 'block' }} key={'logout'} disablePadding>
             <Link to={'/'} style={{ textDecoration: 'none' }}>
               <ListItemButton sx={{ color:'red' }}>
                 <ListItemIcon>
