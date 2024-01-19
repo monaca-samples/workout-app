@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 
@@ -55,21 +56,25 @@ const SignUp = () => {
               type='password'
               autoComplete='current-password'
             />
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              color="error"
-              sx={{ mb: 2 }}
-            >
-              Cancel
-            </Button>
+            <Link to={'/dashboard'}>
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+            </Link>
+            <Link to={'/'}>
+              <Button
+                fullWidth
+                variant="outlined"
+                color="error"
+                sx={{ mb: 2 }}
+              >
+                Cancel
+              </Button>
+            </Link>
           </Box>
         </Box>
     </Container>

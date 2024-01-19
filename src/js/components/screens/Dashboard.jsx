@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Box from '@mui/material/Box';
@@ -52,12 +53,14 @@ const Dashboard = () => {
           ))}
           <Divider />
           <ListItem key={'logout'} disablePadding>
-            <ListItemButton sx={{ color:'red' }}>
-              <ListItemIcon>
-                <LogoutIcon sx={{ color:'red' }}/>
-              </ListItemIcon>
-              <ListItemText sx={{ }} primary={'Log Out!'} />
-            </ListItemButton>
+            <Link to={'/'} style={{ textDecoration: 'none' }}>
+              <ListItemButton sx={{ color:'red' }}>
+                <ListItemIcon>
+                  <LogoutIcon sx={{ color:'red' }}/>
+                </ListItemIcon>
+                <ListItemText sx={{ }} primary={'Log Out!'} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         </List>
       </SwipeableDrawer>
