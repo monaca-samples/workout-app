@@ -12,6 +12,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 
 const Dashboard = () => {
   const [drawerAnchor, setDrawerAnchor] = useState(false);
@@ -31,12 +37,26 @@ const Dashboard = () => {
 
   return(
     <Box sx={{ display: 'flex' }}>
-      <IconButton
-        aria-label="open drawer"
-        onClick={ toggleDrawer(true) }
-      >
-        <MenuIcon sx={{ p:1 }}/>
-      </IconButton>
+
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open-drawer"
+              onClick={ toggleDrawer(true) }
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Dashboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
       <SwipeableDrawer
         anchor={"left"}
         open={drawerAnchor}
@@ -64,6 +84,71 @@ const Dashboard = () => {
           </ListItem>
         </List>
       </SwipeableDrawer>
+      
+      <Container maxWidth="lg" sx={{ mt: 10, mb: 5 }}>
+        <Grid container spacing={2}>
+          {/* Weight Chart */}
+          <Grid item xs={12} md={8} lg={9}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 240,
+              }}
+            >
+              <Typography variant="h6">
+                Weight Chart
+              </Typography>
+            </Paper>
+          </Grid>
+          {/* Routine overview */}
+          <Grid item xs={12} md={4} lg={3}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 240,
+              }}
+            >
+              <Typography variant="h6">
+                Routine Overview
+              </Typography>
+            </Paper>
+          </Grid>
+          {/* More elements... */}
+          <Grid item xs={12} md={4} lg={3}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 240,
+              }}
+            >
+              <Typography>
+                More elements...
+              </Typography>
+            </Paper>
+          </Grid>
+          {/* More elements... */}
+          <Grid item xs={12} md={4} lg={3}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 240,
+              }}
+            >
+              <Typography>
+                More elements...
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 }
