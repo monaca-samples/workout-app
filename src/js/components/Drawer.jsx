@@ -11,6 +11,7 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const Drawer = ({ drawerAnchor, toggleDrawer }) => {
   return(
@@ -21,8 +22,18 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
       onClose={ toggleDrawer(false) }
     >
       <List>
+      <ListItem sx={{ display: 'block' }} key={'dashboard'} disablePadding>
+          <Link to={'/dashboard'} style={{ textDecoration: 'none' }}>
+            <ListItemButton>
+              <ListItemIcon>
+                <DashboardIcon/>
+              </ListItemIcon>
+              <ListItemText sx={{ color: 'black'}} primary={'Dashboard'} />
+            </ListItemButton>
+          </Link>
+        </ListItem>
         <ListItem sx={{ display: 'block' }} key={'profile'} disablePadding>
-          <Link to={'/Dashboard'} style={{ textDecoration: 'none' }}>
+          <Link to={'/profile'} style={{ textDecoration: 'none' }}>
             <ListItemButton>
               <ListItemIcon>
                 <AccountCircleIcon/>
@@ -32,7 +43,7 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
           </Link>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'routine'} disablePadding>
-          <Link to={'/Dashboard'} style={{ textDecoration: 'none' }}>
+          <Link to={'/routine'} style={{ textDecoration: 'none' }}>
             <ListItemButton>
               <ListItemIcon>
                 <FitnessCenterIcon/>
@@ -42,7 +53,7 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
           </Link>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'search'} disablePadding>
-          <Link to={'/Dashboard'} style={{ textDecoration: 'none' }}>
+          <Link to={'/search-exercises'} style={{ textDecoration: 'none' }}>
             <ListItemButton>
               <ListItemIcon>
                 <SearchIcon/>

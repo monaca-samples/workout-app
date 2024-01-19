@@ -9,20 +9,7 @@ import Typography from '@mui/material/Typography';
 import Bar from '../Bar';
 import Drawer from '../Drawer';
 
-const Dashboard = () => {
-  const [drawerAnchor, setDrawerAnchor] = useState(false);
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setDrawerAnchor(open);
-  };
-
+const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
 
   return(
     <Box sx={{ display: 'flex' }}>
