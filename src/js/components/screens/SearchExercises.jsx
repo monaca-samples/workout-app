@@ -11,6 +11,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 import Bar from '../Bar';
 import Drawer from '../Drawer';
@@ -36,6 +40,53 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
     }
   }
 
+  const [muscle, setMuscle] = useState('');
+  const handleChangeMuscle = (event) => {
+    setMuscle(event.target.value);
+  };
+  const muscles = [
+    'abdominals',
+    'abductors',
+    'adductors',
+    'biceps',
+    'calves',
+    'chest',
+    'forearms',
+    'glutes',
+    'hamstrings',
+    'lats',
+    'lower_back',
+    'middle_back',
+    'neck',
+    'quadriceps',
+    'traps',
+    'triceps',
+  ];
+
+  const [type, setType] = useState('');
+  const handleChangeType = (event) => {
+    setType(event.target.value);
+  };
+  const types = [
+    'cardio',
+    'olympic_weightlifting',
+    'plyometrics',
+    'powerlifting',
+    'strength',
+    'stretching',
+    'strongman',
+  ];
+
+  const [difficulty, setDifficulty] = useState('');
+  const handleChangeDifficulty = (event) => {
+    setDifficulty(event.target.value);
+  };
+  const difficulties = [
+    'beginner',
+    'intermediate',
+    'expert',
+  ];
+
   return(
     <Box>
       <Bar title={'Search Exercises'} toggleDrawer={toggleDrawer}/>
@@ -56,11 +107,59 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
               ),
             }}
           />
+          <FormControl sx={{  mt: 1, mr: 1, minWidth: 120 }} size="small">
+            <InputLabel id="muscle">Muscle</InputLabel>
+            <Select
+              id="muscle"
+              value={muscle}
+              label="Muscle"
+              onChange={handleChangeMuscle}
+            >
+              <MenuItem value=""><em>None</em></MenuItem>
+              {
+                muscles.map((muscle) =>
+                  <MenuItem value={muscle}>{muscle}</MenuItem>
+                )
+              }
+            </Select>
+          </FormControl>
+          <FormControl sx={{ mt: 1, mr: 1, minWidth: 120 }} size="small">
+            <InputLabel id="type">Type</InputLabel>
+            <Select
+              id="type"
+              value={type}
+              label="Type"
+              onChange={handleChangeType}
+            >
+              <MenuItem value=""><em>None</em></MenuItem>
+              {
+                types.map((type) =>
+                  <MenuItem value={type}>{type}</MenuItem>
+                )
+              }
+            </Select>
+          </FormControl>
+          <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
+            <InputLabel id="difficulty">Difficulty</InputLabel>
+            <Select
+              id="difficulty"
+              value={difficulty}
+              label="Difficulty"
+              onChange={handleChangeDifficulty}
+            >
+              <MenuItem value=""><em>None</em></MenuItem>
+              {
+                difficulties.map((difficulty) =>
+                  <MenuItem value={difficulty}>{difficulty}</MenuItem>
+                )
+              }
+            </Select>
+          </FormControl>
           <Button
             fullWidth
             variant="contained"
             onClick={onSearch}
-            sx={{ mt: 1 }}
+            sx={{ mt: 2 }}
           >
             Search
           </Button>
