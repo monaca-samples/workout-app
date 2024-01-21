@@ -15,6 +15,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 import Bar from '../Bar';
 import Drawer from '../Drawer';
@@ -38,6 +39,10 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
     for (let i = 0; i < 10; i++) {
       setExercises((prevState) => ([...prevState, {name: `${searchText} ${i}`, image: "https://source.unsplash.com/random?exercise"}]))
     }
+    // reset filters
+    setMuscle('');
+    setType('');
+    setDifficulty('');
   }
 
   const [muscle, setMuscle] = useState('');
@@ -87,6 +92,11 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
     'expert',
   ];
 
+  const [showFilters, setShowFilters] = useState(false);
+  const onClickFilter = () => {
+    setShowFilters(!showFilters);
+  }
+
   return(
     <Box>
       <Bar title={'Search Exercises'} toggleDrawer={toggleDrawer}/>
@@ -107,54 +117,75 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
               ),
             }}
           />
-          <FormControl sx={{  mt: 1, mr: 1, minWidth: 120 }} size="small">
-            <InputLabel id="muscle">Muscle</InputLabel>
-            <Select
-              id="muscle"
-              value={muscle}
-              label="Muscle"
-              onChange={handleChangeMuscle}
+          { showFilters ? 
+              <>
+                <Box>
+                  <Button
+                    startIcon={<FilterListIcon />}
+                    onClick={onClickFilter}
+                    size="small"
+                  >
+                    Hide filters
+                  </Button>
+                </Box>
+                <FormControl sx={{  mt: 1, mr: 1, minWidth: 120 }} size="small">
+                  <InputLabel id="muscle">Muscle</InputLabel>
+                  <Select
+                    id="muscle"
+                    value={muscle}
+                    label="Muscle"
+                    onChange={handleChangeMuscle}
+                  >
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    {
+                      muscles.map((muscle) =>
+                        <MenuItem value={muscle}>{muscle}</MenuItem>
+                      )
+                    }
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ mt: 1, mr: 1, minWidth: 120 }} size="small">
+                  <InputLabel id="type">Type</InputLabel>
+                  <Select
+                    id="type"
+                    value={type}
+                    label="Type"
+                    onChange={handleChangeType}
+                  >
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    {
+                      types.map((type) =>
+                        <MenuItem value={type}>{type}</MenuItem>
+                      )
+                    }
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
+                  <InputLabel id="difficulty">Difficulty</InputLabel>
+                  <Select
+                    id="difficulty"
+                    value={difficulty}
+                    label="Difficulty"
+                    onChange={handleChangeDifficulty}
+                  >
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    {
+                      difficulties.map((difficulty) =>
+                        <MenuItem value={difficulty}>{difficulty}</MenuItem>
+                      )
+                    }
+                  </Select>
+                </FormControl>
+              </>
+            :
+            <Button
+              startIcon={<FilterListIcon />}
+              onClick={onClickFilter}
+              size="small"
             >
-              <MenuItem value=""><em>None</em></MenuItem>
-              {
-                muscles.map((muscle) =>
-                  <MenuItem value={muscle}>{muscle}</MenuItem>
-                )
-              }
-            </Select>
-          </FormControl>
-          <FormControl sx={{ mt: 1, mr: 1, minWidth: 120 }} size="small">
-            <InputLabel id="type">Type</InputLabel>
-            <Select
-              id="type"
-              value={type}
-              label="Type"
-              onChange={handleChangeType}
-            >
-              <MenuItem value=""><em>None</em></MenuItem>
-              {
-                types.map((type) =>
-                  <MenuItem value={type}>{type}</MenuItem>
-                )
-              }
-            </Select>
-          </FormControl>
-          <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
-            <InputLabel id="difficulty">Difficulty</InputLabel>
-            <Select
-              id="difficulty"
-              value={difficulty}
-              label="Difficulty"
-              onChange={handleChangeDifficulty}
-            >
-              <MenuItem value=""><em>None</em></MenuItem>
-              {
-                difficulties.map((difficulty) =>
-                  <MenuItem value={difficulty}>{difficulty}</MenuItem>
-                )
-              }
-            </Select>
-          </FormControl>
+              Show filters
+            </Button>
+          }
           <Button
             fullWidth
             variant="contained"
