@@ -85,7 +85,7 @@ const Routine = ({ drawerAnchor, toggleDrawer }) => {
             <FormControl sx={{ mt: 1, minWidth: 120 }} size="small" fullWidth>
               <InputLabel id="goal">Goal</InputLabel>
               <Select
-                id="difficulty"
+                id="goal"
                 value={goal}
                 label="Goal"
                 onChange={handleChangeGoal}
