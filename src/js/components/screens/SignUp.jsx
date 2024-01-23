@@ -3,14 +3,19 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     console.log("TODO")
+    navigate('/dashboard');
   }
 
+  const handleCancel = () => {
+    navigate('/')
+  }
 
   return(
     <Container maxWidth="xs">
@@ -56,25 +61,23 @@ const SignUp = () => {
               type='password'
               autoComplete='current-password'
             />
-            <Link to={'/dashboard'}>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
-              </Button>
-            </Link>
-            <Link to={'/'}>
-              <Button
-                fullWidth
-                variant="outlined"
-                color="error"
-                sx={{ mb: 2 }}
-              >
-                Cancel
-              </Button>
-            </Link>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
+            >
+              Sign Up
+            </Button>
+            <Button
+              fullWidth
+              variant="outlined"
+              color="error"
+              sx={{ mb: 2 }}
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
           </Box>
         </Box>
     </Container>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import List from '@mui/material/List';
@@ -14,6 +14,30 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const Drawer = ({ drawerAnchor, toggleDrawer }) => {
+  const navigate = useNavigate();
+
+  const handleDashboard = () => {
+    navigate('/dashboard');
+    toggleDrawer(false);
+  }
+  const handleProfile = () => {
+    navigate('/profile');
+    toggleDrawer(false);
+  }
+  const handleRoutine = () => {
+    navigate('/routine');
+    toggleDrawer(false);
+  }
+  const handleSearchExercises = () => {
+    navigate('/search-exercises');
+    toggleDrawer(false);
+  }
+  const handleLogOut = () => {
+    console.log('TODO');
+    navigate('/');
+    toggleDrawer(false);
+  }
+
   return(
     <SwipeableDrawer
       anchor={"left"}
@@ -23,55 +47,45 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
     >
       <List>
       <ListItem sx={{ display: 'block' }} key={'dashboard'} disablePadding>
-          <Link to={'/dashboard'} style={{ textDecoration: 'none' }}>
-            <ListItemButton>
-              <ListItemIcon>
-                <DashboardIcon/>
-              </ListItemIcon>
-              <ListItemText sx={{ color: 'black'}} primary={'Dashboard'} />
-            </ListItemButton>
-          </Link>
+          <ListItemButton onClick={handleDashboard}>
+            <ListItemIcon>
+              <DashboardIcon/>
+            </ListItemIcon>
+            <ListItemText sx={{ color: 'black'}} primary={'Dashboard'} />
+          </ListItemButton>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'profile'} disablePadding>
-          <Link to={'/profile'} style={{ textDecoration: 'none' }}>
-            <ListItemButton>
-              <ListItemIcon>
-                <AccountCircleIcon/>
-              </ListItemIcon>
-              <ListItemText sx={{ color: 'black'}} primary={'Profile'} />
-            </ListItemButton>
-          </Link>
+          <ListItemButton onClick={handleProfile}>
+            <ListItemIcon>
+              <AccountCircleIcon/>
+            </ListItemIcon>
+            <ListItemText sx={{ color: 'black'}} primary={'Profile'} />
+          </ListItemButton>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'routine'} disablePadding>
-          <Link to={'/routine'} style={{ textDecoration: 'none' }}>
-            <ListItemButton>
-              <ListItemIcon>
-                <FitnessCenterIcon/>
-              </ListItemIcon>
-              <ListItemText sx={{ color: 'black'}} primary={'Routine'} />
-            </ListItemButton>
-          </Link>
+          <ListItemButton onClick={handleRoutine}>
+            <ListItemIcon>
+              <FitnessCenterIcon/>
+            </ListItemIcon>
+            <ListItemText sx={{ color: 'black'}} primary={'Routine'} />
+          </ListItemButton>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'search'} disablePadding>
-          <Link to={'/search-exercises'} style={{ textDecoration: 'none' }}>
-            <ListItemButton>
-              <ListItemIcon>
-                <SearchIcon/>
-              </ListItemIcon>
-              <ListItemText sx={{ color: 'black', mr: 2 }} primary={'Search Exercises'} />
-            </ListItemButton>
-          </Link>
+          <ListItemButton onClick={handleSearchExercises}>
+            <ListItemIcon>
+              <SearchIcon/>
+            </ListItemIcon>
+            <ListItemText sx={{ color: 'black', mr: 2 }} primary={'Search Exercises'} />
+          </ListItemButton>
         </ListItem>
         <Divider />
         <ListItem sx={{ display: 'block' }} key={'logout'} disablePadding>
-          <Link to={'/'} style={{ textDecoration: 'none' }}>
-            <ListItemButton sx={{ color:'red' }}>
-              <ListItemIcon>
-                <LogoutIcon sx={{ color:'red' }}/>
-              </ListItemIcon>
-              <ListItemText sx={{ }} primary={'Log Out!'} />
-            </ListItemButton>
-          </Link>
+          <ListItemButton sx={{ color:'red' }} onClick={handleLogOut}>
+            <ListItemIcon>
+              <LogoutIcon sx={{ color:'red' }}/>
+            </ListItemIcon>
+            <ListItemText sx={{ }} primary={'Log Out!'} />
+          </ListItemButton>
         </ListItem>
       </List>
     </SwipeableDrawer>
