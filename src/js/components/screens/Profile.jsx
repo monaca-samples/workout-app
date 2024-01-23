@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Box from '@mui/material/Box';
 import Bar from '../Bar';
 import Drawer from '../Drawer';
@@ -7,19 +9,36 @@ import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
+import TextField from '@mui/material/TextField';
 
 const Profile = ({ drawerAnchor, toggleDrawer }) => {
 
   // TODO: get from firebase
-  const user = {
-    name: 'Juan',
-    email: 'juan@asial.co.jp',
-    weight: 59,
-    height: 178,
+  const [name, setName] = useState('Juan');
+  const [email, setEmail] = useState('juan@asial.co.jp');
+  const [weight, setWeight] = useState(59);
+  const [height, setHeight] = useState(178);
+
+  const [cName, setCName] = useState('Juan');
+  const [cEmail, setCEmail] = useState('juan@asial.co.jp');
+  const [cWeight, setCWeight] = useState(59);
+  const [cHeight, setCHeight] = useState(178);
+  const changeName = (e) => {
+    setCName(e.target.value);
+  }
+  const changeEmail = (e) => {
+    setCEmail(e.target.value);
+  }
+  const changeWeight = (e) => {
+    setCWeight(e.target.value);
+  }
+  const changeHeight = (e) => {
+    setCHeight(e.target.value);
   }
 
   const calculateBMI = () => {
-    return (user.weight/((user.height/100)**2)).toFixed(2)
+    return (weight/((height/100)**2)).toFixed(2)
   }
 
   const bmiExplanation = (bmi) => {
@@ -38,7 +57,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
       }
     } else if(Number(bmi) < 30) {
       return {
-        type: "Overweright",
+        type: "Overweight",
         message: "Your current weight is over the normal weight. First consider "
         + "if you are a professional athlete, bodybuilder or someone who has more"
         + " muscle than the average person. If not, you should try to lose some weight."
@@ -66,6 +85,25 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
     }
   }
 
+  const [editingPersonal, setEditingPersonal] = useState(false);
+  const [editingFitness, setEditingFitness] = useState(false);
+  const handleEditingPersonal = () => {
+    setEditingPersonal(!editingPersonal);
+  }
+  const handleSavePersonal = () => {
+    setName(cName);
+    setEmail(cEmail);
+    handleEditingPersonal();
+  }
+  const handleEditingFitness = () => {
+    setEditingFitness(!editingFitness);
+  }
+  const handleSaveFitness = () => {
+    setHeight(cHeight);
+    setWeight(cWeight);
+    handleEditingFitness();
+  }
+
   return(
     <Box sx={{ display: 'flex' }}>
       <Bar title={'Profile'} toggleDrawer={toggleDrawer}/>
@@ -80,7 +118,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
           }}
         >
           <Typography variant="h4" gutterBottom>
-            {user.name}
+            {name}
           </Typography>
         </Box>
         <Box
@@ -95,18 +133,51 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
               flexDirection: 'column',
             }}
           >
-            <Typography variant="h6" sx={{ m:1 }}>
-              Name: {user.name}
-            </Typography>
-            <Divider />
-            <Typography variant="h6" sx={{ m:1 }}>
-              Email: {user.email}
-            </Typography>
+            { editingPersonal ? 
+              <>
+                <Box sx={{p:1}}>
+                  <TextField
+                    onChange={changeName}
+                    fullWidth
+                    variant='standard'
+                    margin='none'
+                    label='Name'
+                    value={cName}
+                  />
+                </Box>
+                <Box sx={{p:1}}>
+                  <TextField
+                    onChange={changeEmail}
+                    fullWidth
+                    variant='standard'
+                    margin='none'
+                    label='Email'
+                    value={cEmail}
+                  />
+                </Box>
+              </>
+              :
+              <>
+                <Typography variant="h6" sx={{ m:1 }}>
+                  Name: {name}
+                </Typography>
+                <Divider />
+                <Typography variant="h6" sx={{ m:1 }}>
+                  Email: {email}
+                </Typography>
+              </>
+            }
           </Paper>
           <Box display="flex" justifyContent="flex-end">
-            <Button size="small" startIcon={<EditIcon />}>
-              Edit
-            </Button>
+            { editingPersonal ?
+              <Button size="small" startIcon={<SaveIcon />} onClick={handleSavePersonal}>
+                Save
+              </Button>
+              :
+              <Button size="small" startIcon={<EditIcon />} onClick={handleEditingPersonal}>
+                Edit
+              </Button>
+            }
           </Box>
         </Box>
         <Box
@@ -121,18 +192,53 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
               flexDirection: 'column',
             }}
           >
-            <Typography variant="h6" sx={{ m:1 }}>
-              Height: {user.height} cm
-            </Typography>
-            <Divider />
-            <Typography variant="h6" sx={{ m:1 }}>
-              Weight: {user.weight} kg
-            </Typography>
+            { editingFitness ?
+              <>
+                <Box sx={{p:1}}>
+                  <TextField
+                    onChange={changeHeight}
+                    fullWidth
+                    variant='standard'
+                    margin='none'
+                    label='Height'
+                    type='number'
+                    value={cHeight}
+                  />
+                </Box>
+                <Box sx={{p:1}}>
+                  <TextField
+                    onChange={changeWeight}
+                    fullWidth
+                    variant='standard'
+                    margin='none'
+                    label='Weight'
+                    type='number'
+                    value={cWeight}
+                  />
+                </Box>
+              </>
+              :
+              <>
+                <Typography variant="h6" sx={{ m:1 }}>
+                  Height: {height} cm
+                </Typography>
+                <Divider />
+                <Typography variant="h6" sx={{ m:1 }}>
+                  Weight: {weight} kg
+                </Typography>
+              </>
+          }
           </Paper>
           <Box display="flex" justifyContent="flex-end">
-            <Button size="small" startIcon={<EditIcon />}>
-              Edit
-            </Button>
+            { editingFitness ?
+              <Button size="small" startIcon={<SaveIcon />} onClick={handleSaveFitness}>
+                Save
+              </Button>
+              :
+              <Button size="small" startIcon={<EditIcon />} onClick={handleEditingFitness}>
+                Edit
+              </Button>
+            }
           </Box>
         </Box>
         <Box
