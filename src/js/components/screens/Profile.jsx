@@ -3,6 +3,10 @@ import Bar from '../Bar';
 import Drawer from '../Drawer';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Profile = ({ drawerAnchor, toggleDrawer }) => {
 
@@ -67,46 +71,94 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
       <Bar title={'Profile'} toggleDrawer={toggleDrawer}/>
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
       
-      <Container sx={{ pt: 10 }}>
-        <Typography variant="h4">
-          {user.name}
-        </Typography>
-        <Box>
+      <Container sx={{ pt: 10 }} maxWidth="lg">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h4" gutterBottom>
+            {user.name}
+          </Typography>
+        </Box>
+        <Box
+          sx={{ mb: 2 }}
+        >
           <Typography variant="h6">
             Personal information
           </Typography>
-          <Typography variant="h6">
-            Name: {user.name}
-          </Typography>
-          <Typography variant="h6">
-            Email: {user.email}
-          </Typography>
+          <Paper
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="h6" sx={{ m:1 }}>
+              Name: {user.name}
+            </Typography>
+            <Divider />
+            <Typography variant="h6" sx={{ m:1 }}>
+              Email: {user.email}
+            </Typography>
+          </Paper>
+          <Box display="flex" justifyContent="flex-end">
+            <Button size="small" startIcon={<EditIcon />}>
+              Edit
+            </Button>
+          </Box>
         </Box>
-        <Box>
+        <Box
+          sx={{ mb: 2 }}
+        >
           <Typography variant="h6">
-            FItness information
+            Fitness information
           </Typography>
-          <Typography variant="h6">
-            Height: {user.height} cm
-          </Typography>
-          <Typography variant="h6">
-            Weight: {user.weight} kg
-          </Typography>
-          EDIT! Button
+          <Paper
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="h6" sx={{ m:1 }}>
+              Height: {user.height} cm
+            </Typography>
+            <Divider />
+            <Typography variant="h6" sx={{ m:1 }}>
+              Weight: {user.weight} kg
+            </Typography>
+          </Paper>
+          <Box display="flex" justifyContent="flex-end">
+            <Button size="small" startIcon={<EditIcon />}>
+              Edit
+            </Button>
+          </Box>
         </Box>
-        <Box>
+        <Box
+          sx={{ mb: 2 }}
+        >
           <Typography variant="h6">
             BMI
           </Typography>
-          <Typography variant="h6">
-            Your BMI is {calculateBMI()}
-          </Typography> 
-          <Typography variant="h6">
-            {bmiExplanation(calculateBMI()).type}
-          </Typography>
-          <Typography variant="h6">
-            {bmiExplanation(calculateBMI()).message}
-          </Typography>
+          <Paper
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="h6" sx={{ m:1 }}>
+              Your BMI is {calculateBMI()}
+            </Typography>
+            <Divider />
+            <Typography variant="h6" sx={{ m:1 }}>
+              {bmiExplanation(calculateBMI()).type}
+            </Typography>
+            <Divider />
+            <Typography variant="h6" sx={{ m:1 }}>
+              {bmiExplanation(calculateBMI()).message}
+            </Typography>
+          </Paper>
         </Box>
       </Container>
     </Box>
