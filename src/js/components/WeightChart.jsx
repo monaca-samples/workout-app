@@ -3,20 +3,6 @@ import { LineChart } from '@mui/x-charts/LineChart';
 
 const WeightChart = ({ weights }) => {
 
-  // TODO: get actual data
-  const actulWeigths = [
-    60,
-    58,
-    56,
-    59,
-  ];
-  const xsabels = [
-    '01/10/2023',
-    '01/11/2023',
-    '01/12/2023',
-    '01/01/2024',
-  ];
-
   const actualWeigths = () => {
     const result = [];
     for (let i = 0; i<weights.length; i++) {
