@@ -5,25 +5,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { LineChart } from '@mui/x-charts/LineChart';
 
 import Bar from '../Bar';
 import Drawer from '../Drawer';
+import WeightChart from '../WeightChart';
 
 const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
-
-  const actualWeigths = [
-    60,
-    58,
-    56,
-    59,
-  ];
-  const xLabels = [
-    '01/10/2023',
-    '01/11/2023',
-    '01/12/2023',
-    '01/01/2024',
-  ];
 
   return(
     <Box sx={{ display: 'flex' }}>
@@ -44,28 +31,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
                 height: 240,
               }}
             >
-              <Typography variant="h6">
-                Weight Chart
-              </Typography>
-              <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
-                <LineChart
-                  margin={{
-                    top: 50,
-                    right: 40,
-                    left: 40,
-                    bottom: 30,
-                  }}
-                  xAxis={[{ scaleType: 'point', data: xLabels }]}
-                  series={[
-                    {
-                      data: actualWeigths, label:'Actual weight'
-                    },
-                    {
-                      data: [57, 57, 57, 57], label:'Ideal weight'
-                    },
-                  ]}
-                />
-              </div>
+              <WeightChart />
             </Paper>
           </Grid>
           {/* Routine overview */}
