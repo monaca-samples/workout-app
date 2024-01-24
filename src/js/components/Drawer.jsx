@@ -13,6 +13,9 @@ import Divider from '@mui/material/Divider';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+
 const Drawer = ({ drawerAnchor, toggleDrawer }) => {
   const navigate = useNavigate();
 
@@ -33,9 +36,12 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
     toggleDrawer(false);
   }
   const handleLogOut = () => {
-    console.log('TODO');
-    navigate('/');
-    toggleDrawer(false);
+      signOut(auth).then(() => {
+        navigate('/');
+        toggleDrawer(false);
+      }).catch((error) => {
+        console.log("Log out error\n", error.errorCode + " " + error.errorMessage);
+      })
   }
 
   return(

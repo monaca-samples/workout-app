@@ -5,13 +5,32 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from 'react';
+
 
 const Login = () => {
   const navigate = useNavigate();
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  }
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  }
 
   const handleSubmit = () => {
-    console.log("TODO")
-    navigate('/dashboard');
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user; // later see what to do with this
+      navigate('/dashboard');
+    })
+    .catch((error) => {
+      alert("Auth failed\n", error.code + " " + error.message);
+    })
   }
 
   const handleSignUp = () => {
@@ -39,6 +58,8 @@ const Login = () => {
               label='Email'
               autoComplete='email'
               autoFocus
+              value={email}
+              onChange={handleEmail}
             />
             <TextField
               margin='normal'
@@ -47,6 +68,8 @@ const Login = () => {
               label='Password'
               type='password'
               autoComplete='current-password'
+              value={password}
+              onChange={handlePassword}
             />
             <Button
               fullWidth
