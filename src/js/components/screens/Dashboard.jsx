@@ -10,7 +10,11 @@ import Bar from '../Bar';
 import Drawer from '../Drawer';
 import WeightChart from '../WeightChart';
 
+import { userData } from '../../state/state';
+import { useAtomValue } from 'jotai/react';
+
 const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
+  const user = useAtomValue(userData);
 
   return(
     <Box sx={{ display: 'flex' }}>
@@ -18,8 +22,11 @@ const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
       <Bar title={'Dashboard'} toggleDrawer={toggleDrawer}/>
 
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
-      
+
       <Container maxWidth="lg" sx={{ mt: 10, mb: 5 }}>
+        <Typography variant="h5" gutterBottom>
+          Welcome back, {user.name}!
+        </Typography>
         <Grid container spacing={2}>
           {/* Weight Chart */}
           <Grid item xs={12} md={8} lg={9}>

@@ -5,10 +5,14 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+
 import { useState } from 'react';
 
+import { userData } from '../../state/state';
+import { useSetAtom } from 'jotai/react';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,11 +26,25 @@ const Login = () => {
     setPassword(e.target.value);
   }
 
+  const setUserData = useSetAtom(userData);
+
   const handleSubmit = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user; // later see what to do with this
-      navigate('/dashboard');
+
+      const docRef = doc(db, 'users', `${email}`);
+      getDoc(docRef)
+      .then((docSnap) => {
+        setUserData({
+          email: docSnap.data().email,
+          name: docSnap.data().name,
+        })
+        navigate('/dashboard');
+      })
+      .catch((error) => {
+        alert("Error reading user");
+      })
     })
     .catch((error) => {
       alert("Auth failed\n", error.code + " " + error.message);
