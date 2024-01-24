@@ -2670,6 +2670,7 @@ __metadata:
     cross-env: "npm:^7.0.3"
     firebase: "npm:^10.7.2"
     fs-extra: "npm:11.2.0"
+    jotai: "npm:^2.6.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.21.3"
@@ -4447,6 +4448,21 @@ __metadata:
     jest-get-type: "npm:^27.5.1"
     pretty-format: "npm:^27.5.1"
   checksum: a2f082062e8bedc9cfe2654177a894ca43768c6db4c0f4efc0d6ec195e305a99e3d868ff54cc61bcd7f1c810d8ee28c9ac6374de21715dc52f136876de739a73
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "jotai@npm:2.6.2"
+  peerDependencies:
+    "@types/react": ">=17.0.0"
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 2b502d4915a3d0a1f507dbefec54fe05e16b10cb0d4bd84ce3f0c1fccc96d09152dbc6fc803ab084882c70de124a38411647b9abb16b186f0512b1fd33201679
   languageName: node
   linkType: hard
 

@@ -47,6 +47,7 @@ const RAW_RUNTIME_STATE =
           ["cross-env", "npm:7.0.3"],\
           ["firebase", "npm:10.7.2"],\
           ["fs-extra", "npm:11.2.0"],\
+          ["jotai", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:2.6.2"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:18.2.0"],\
           ["react-router-dom", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:6.21.3"],\
@@ -3809,6 +3810,7 @@ const RAW_RUNTIME_STATE =
           ["cross-env", "npm:7.0.3"],\
           ["firebase", "npm:10.7.2"],\
           ["fs-extra", "npm:11.2.0"],\
+          ["jotai", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:2.6.2"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:18.2.0"],\
           ["react-router-dom", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:6.21.3"],\
@@ -5744,6 +5746,28 @@ const RAW_RUNTIME_STATE =
           ["jest-diff", "npm:27.5.1"],\
           ["jest-get-type", "npm:27.5.1"],\
           ["pretty-format", "npm:27.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["jotai", [\
+      ["npm:2.6.2", {\
+        "packageLocation": "../../.yarn/berry/cache/jotai-npm-2.6.2-d482bf2d42-10c0.zip/node_modules/jotai/",\
+        "packageDependencies": [\
+          ["jotai", "npm:2.6.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:2.6.2", {\
+        "packageLocation": "./.yarn/__virtual__/jotai-virtual-6b20086a6c/3/.yarn/berry/cache/jotai-npm-2.6.2-d482bf2d42-10c0.zip/node_modules/jotai/",\
+        "packageDependencies": [\
+          ["jotai", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:2.6.2"],\
+          ["@types/react", "npm:18.2.48"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
