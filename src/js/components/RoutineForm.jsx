@@ -29,15 +29,28 @@ const RoutineForm = ({ setCreated }) => {
     setCreated(true);
   }
 
-  const [days, setDays] = useState(0);
+  const [days, setDays] = useState(1);
   const generateDaysMarks = () => {
     return [1,2,3,4,5,6,7].map((val) => {
       return {value: val, label: val};
     });
   }
-  const handleSliderChange = (e) => {
+  const handleDaysSliderChange = (e) => {
     setDays(e.target.value);
   }
+  const [hours, setHours] = useState(1);
+  const generateHoursMarks = () => {
+    return [1,2,3,4,5].map((val) => {
+      return {value: val, label: val};
+    });
+  }
+  const handleHoursSliderChange = (e) => {
+    setHours(e.target.value);
+  }
+  const [firstTime, setFirstTime] = useState(false);
+  const handleChangeFirstTime = (event) => {
+    setFirstTime(event.target.value);
+  };
   const [goal, setGoal] = useState('');
   const handleChangeGoal = (event) => {
     setGoal(event.target.value);
@@ -48,6 +61,7 @@ const RoutineForm = ({ setCreated }) => {
     'gain flexibility',
     'become more athletic',
   ];
+
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -61,14 +75,50 @@ const RoutineForm = ({ setCreated }) => {
             </Typography>
             <Slider
               aria-label="days-a-week"
-              defaultValue={0}
-              onChange={handleSliderChange}
+              defaultValue={days}
+              onChange={handleDaysSliderChange}
               valueLabelDisplay="auto"
               step={1}
               marks={generateDaysMarks()}
               min={1}
               max={7}
             />
+            <Typography gutterBottom>
+              How many hours a day do you want to workout?
+            </Typography>
+            <Slider
+              aria-label="hours-a-day"
+              defaultValue={hours}
+              onChange={handleHoursSliderChange}
+              valueLabelDisplay="auto"
+              step={1}
+              marks={generateHoursMarks()}
+              min={1}
+              max={5}
+            />
+            <Typography gutterBottom sx={{ mt:1 }}>
+              Is this your first time exercising?
+            </Typography>
+            <FormControl sx={{ mt: 1, minWidth: 120 }} size="small" fullWidth>
+              <InputLabel id="first-time">First time?</InputLabel>
+              <Select
+                id="first-time"
+                value={firstTime}
+                label="First time?"
+                onChange={handleChangeFirstTime}
+              >
+                <MenuItem value={false}>No</MenuItem>
+                <MenuItem value={true}>Yes</MenuItem>
+              </Select>
+            </FormControl>
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <Typography variant="h6" gutterBottom>
+              Advanced details
+            </Typography>
             <Typography gutterBottom sx={{ mt:1 }}>
               What is your main goal?
             </Typography>
@@ -88,20 +138,6 @@ const RoutineForm = ({ setCreated }) => {
                 }
               </Select>
             </FormControl>
-            <Typography gutterBottom sx={{ mt:1 }}> 
-              Add more stuff...
-            </Typography>
-          </>
-        );
-      case 1:
-        return (
-          <>
-            <Typography variant="h6" gutterBottom>
-              Advanced details
-            </Typography>
-            <Typography gutterBottom>
-              Add more stuff...
-            </Typography>
           </>
         );
       default:
