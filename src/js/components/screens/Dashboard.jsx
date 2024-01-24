@@ -10,6 +10,7 @@ import WeightChart from '../WeightChart';
 
 import { userData } from '../../state/state';
 import { useAtomValue } from 'jotai/react';
+import BmiGauge from '../BmiGauge';
 
 const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
   const user = useAtomValue(userData);
@@ -37,6 +38,19 @@ const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
               }}
             >
               <WeightChart weights={user.weights}/>
+            </Paper>
+          </Grid>
+          {/* BMI */}
+          <Grid item xs={12} md={4} lg={3}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 200,
+              }}
+            >
+              <BmiGauge />
             </Paper>
           </Grid>
           {/* Routine overview */}
