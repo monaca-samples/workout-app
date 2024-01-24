@@ -39,6 +39,7 @@ const Login = () => {
         setUserData({
           email: docSnap.data().email,
           name: docSnap.data().name,
+          weights: docSnap.data().weights,
         })
         navigate('/dashboard');
       })

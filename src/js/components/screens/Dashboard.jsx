@@ -38,7 +38,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
                 height: 240,
               }}
             >
-              <WeightChart />
+              <WeightChart weights={user.weights}/>
             </Paper>
           </Grid>
           {/* Routine overview */}
