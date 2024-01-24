@@ -1,7 +1,7 @@
 
 
-const generateRoutine = ({ days, time, firstTime, goal, targetGroup }) => {
-
+const generateRoutine = ({ days, hours, firstTime, goal, targetGroup }) => {
+  return false;
 }
 
-export default generateRoutine;
+export {generateRoutine};

@@ -12,6 +12,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import { generateRoutine } from '../routineGenerator';
+
 const RoutineForm = ({ setCreated }) => {
   const steps = ['Basic Details', 'Advanced details'];
   const [activeStep, setActiveStep] = useState(0);
@@ -23,11 +25,6 @@ const RoutineForm = ({ setCreated }) => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-  const handleCreate = () => {
-    alert('Creating routine...');
-    setCreated(true);
-  }
 
   const [days, setDays] = useState(1);
   const generateDaysMarks = () => {
@@ -61,6 +58,27 @@ const RoutineForm = ({ setCreated }) => {
     'gain flexibility',
     'become more athletic',
   ];
+  const [targetGroup, setTargetGroup] = useState('');
+  const handleChangeTargetGroup = (event) => {
+    setGoal(event.target.value);
+  };
+  const targets = [
+    'upper body',
+    'lower body',
+    'pecs',
+    'back',
+    'shoulders',
+    'arms',
+    'abs',
+    'quadriceps',
+    'hamstrings',
+  ];
+
+  const handleCreate = () => {
+    alert('Creating routine...');
+    generateRoutine(days, hours, firstTime, goal, targetGroup);
+    setCreated(true);
+  }
 
   function getStepContent(step) {
     switch (step) {
@@ -134,6 +152,25 @@ const RoutineForm = ({ setCreated }) => {
                 {
                   goals.map((goal) =>
                     <MenuItem value={goal}>{goal}</MenuItem>
+                  )
+                }
+              </Select>
+            </FormControl>
+            <Typography gutterBottom sx={{ mt:1 }}>
+              What is your target muscle group?
+            </Typography>
+            <FormControl sx={{ mt: 1, minWidth: 120 }} size="small" fullWidth>
+              <InputLabel id="target">Target muscle group</InputLabel>
+              <Select
+                id="target"
+                value={targetGroup}
+                label="Target muscle group"
+                onChange={handleChangeTargetGroup}
+              >
+                <MenuItem value=""><em>None in particular</em></MenuItem>
+                {
+                  targets.map((target) =>
+                    <MenuItem value={target}>{target}</MenuItem>
                   )
                 }
               </Select>
