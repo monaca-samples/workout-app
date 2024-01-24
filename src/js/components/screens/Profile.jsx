@@ -12,18 +12,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 
+import { userData } from '../../state/state';
+import { useAtom } from 'jotai/react';
+// add firebase syncronization
+
 const Profile = ({ drawerAnchor, toggleDrawer }) => {
 
-  // TODO: get from firebase
-  const [name, setName] = useState('Juan');
-  const [email, setEmail] = useState('juan@asial.co.jp');
-  const [weight, setWeight] = useState(59);
-  const [height, setHeight] = useState(178);
+  const [user, setUser] = useAtom(userData);
 
-  const [cName, setCName] = useState('Juan');
-  const [cEmail, setCEmail] = useState('juan@asial.co.jp');
-  const [cWeight, setCWeight] = useState(59);
-  const [cHeight, setCHeight] = useState(178);
+  const [cName, setCName] = useState(user.name);
+  const [cEmail, setCEmail] = useState(user.email);
+  const [cWeight, setCWeight] = useState(user.weights[user.weights.length-1].weight);
+  const [cHeight, setCHeight] = useState(user.height);
   const changeName = (e) => {
     setCName(e.target.value);
   }
@@ -38,7 +38,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
   }
 
   const calculateBMI = () => {
-    return (weight/((height/100)**2)).toFixed(2)
+    return (user.weights[user.weights.length-1].weight/((user.height/100)**2)).toFixed(2)
   }
 
   const bmiExplanation = (bmi) => {
@@ -91,16 +91,19 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
     setEditingPersonal(!editingPersonal);
   }
   const handleSavePersonal = () => {
-    setName(cName);
-    setEmail(cEmail);
+    setUser({...user, name: cName, email: cEmail});
+
+    // update firestore
     handleEditingPersonal();
   }
   const handleEditingFitness = () => {
     setEditingFitness(!editingFitness);
   }
   const handleSaveFitness = () => {
-    setHeight(cHeight);
-    setWeight(cWeight);
+    // TODO: add new weight to the end!
+    setUser({...user, height: cHeight})
+
+    // update firestore
     handleEditingFitness();
   }
 
@@ -118,7 +121,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
           }}
         >
           <Typography variant="h4" gutterBottom>
-            {name}
+            {user.name}
           </Typography>
         </Box>
         <Box
@@ -147,6 +150,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
                 </Box>
                 <Box sx={{p:1}}>
                   <TextField
+                    disabled
                     onChange={changeEmail}
                     fullWidth
                     variant='standard'
@@ -159,11 +163,11 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
               :
               <>
                 <Typography variant="h6" sx={{ m:1 }}>
-                  Name: {name}
+                  Name: {user.name}
                 </Typography>
                 <Divider />
                 <Typography variant="h6" sx={{ m:1 }}>
-                  Email: {email}
+                  Email: {user.email}
                 </Typography>
               </>
             }
@@ -207,6 +211,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
                 </Box>
                 <Box sx={{p:1}}>
                   <TextField
+                    disabled
                     onChange={changeWeight}
                     fullWidth
                     variant='standard'
@@ -220,11 +225,11 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
               :
               <>
                 <Typography variant="h6" sx={{ m:1 }}>
-                  Height: {height} cm
+                  Height: {user.height} cm
                 </Typography>
                 <Divider />
                 <Typography variant="h6" sx={{ m:1 }}>
-                  Weight: {weight} kg
+                  Weight: {user.weights[user.weights.length-1].weight} kg
                 </Typography>
               </>
           }
