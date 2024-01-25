@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-const WeightChart = ({ weights }) => {
+const WeightChart = ({ height, weights }) => {
 
   const actualWeigths = () => {
     const result = [];
@@ -20,9 +20,10 @@ const WeightChart = ({ weights }) => {
   }
 
   const idealWeights = () => {
+    const idealWeight = 21.75 * ((height/100)**2);
     const result = [];
     for (let i = 0; i<weights.length; i++) {
-      result.push(57);
+      result.push(idealWeight);
     }
     return result;
   }
