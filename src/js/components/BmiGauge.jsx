@@ -57,6 +57,9 @@ const BmiGauge = () => {
         nrOfLevels={5} 
         percent={gageCalc(calculateBMI())}
         colors={["#ffa100", "#44ff00", "#fff000", "#ffa100", "#ff0000"]}
+        arcPadding={0}
+        cornerRadius={0}
+        hideText={true}
       />
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
         <Typography variant="h6">
