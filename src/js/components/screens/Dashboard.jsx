@@ -47,7 +47,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 200,
+                height: 230,
               }}
             >
               <BmiGauge />

@@ -1,5 +1,6 @@
 import GaugeChart from "react-gauge-chart";
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 import { useAtomValue } from "jotai/react";
 import { userData } from "../state/state";
@@ -13,22 +14,38 @@ const BmiGauge = () => {
 
   const gageCalc = (bmi) => {
     var result = 0;
-    if (bmi >= 16 && bmi <= 18.5) {
+    if (bmi < 18.5) {
       result = getPercentage(bmi, 16, 18.5, 0);
-    } else if (bmi > 18.5 && bmi < 25) {
-      result = getPercentage(bmi, 18.5, 25, 0.25);
-    } else if (bmi >= 25 && bmi <= 30) {
-      result = getPercentage(bmi, 25, 30, 0.5);
-    } else {
-      result = getPercentage(bmi, 25, 30, 0.75);
+    } else if (bmi >= 18.5 && bmi < 25) {
+      result = getPercentage(bmi, 18.5, 25, 0.2);
+    } else if (bmi >= 25 && bmi < 30) {
+      result = getPercentage(bmi, 25, 30, 0.4);
+    } else if (bmi >= 30 && bmi < 35) {
+      result = getPercentage(bmi, 30, 35, 0.6);
+    } else if (bmi >= 35) {
+      result = getPercentage(bmi, 35, 40, 0.8);
     }
     return result;
   };
 
-  function getPercentage(bmi, lowerBound, upperBound, segmentAdjustment) {
+  const getPercentage = (bmi, lowerBound, upperBound, segmentAdjustment) => {
     return (
-      (bmi - lowerBound) / (upperBound - lowerBound) / 4 + segmentAdjustment
+      (bmi - lowerBound) / (upperBound - lowerBound) / 5 + segmentAdjustment
     );
+  }
+
+  const getTitle = (bmi) => {
+    if (bmi < 18.5) {
+      return 'Underweight'
+    } else if (bmi >= 18.5 && bmi < 25) {
+      return 'Normal'
+    } else if (bmi >= 25 && bmi < 30) {
+      return 'Overweight'
+    } else if (bmi >= 30 && bmi < 35) {
+      return 'Obese'
+    } else if (bmi >= 35) {
+      return 'Extremely Obese'
+    }
   }
 
   return(
@@ -41,7 +58,11 @@ const BmiGauge = () => {
         percent={gageCalc(calculateBMI())}
         colors={["#ffa100", "#44ff00", "#fff000", "#ffa100", "#ff0000"]}
       />
-
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+        <Typography variant="h6">
+          {getTitle(calculateBMI())}
+        </Typography>
+      </Box>
     </>
   );
 }
