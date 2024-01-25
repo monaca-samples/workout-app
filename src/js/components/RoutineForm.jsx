@@ -60,7 +60,7 @@ const RoutineForm = ({ setCreated }) => {
   ];
   const [targetGroup, setTargetGroup] = useState('');
   const handleChangeTargetGroup = (event) => {
-    setGoal(event.target.value);
+    setTargetGroup(event.target.value);
   };
   const targets = [
     'upper body',
