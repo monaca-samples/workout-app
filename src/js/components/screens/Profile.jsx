@@ -14,7 +14,9 @@ import TextField from '@mui/material/TextField';
 
 import { userData } from '../../state/state';
 import { useAtom } from 'jotai/react';
-// add firebase syncronization
+
+import { doc, updateDoc } from "firebase/firestore"; 
+import { db } from '../../firebase';
 
 const Profile = ({ drawerAnchor, toggleDrawer }) => {
 
@@ -85,15 +87,18 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
     }
   }
 
+  const docRef = doc(db, 'users', `${user.email}`);
+
   const [editingPersonal, setEditingPersonal] = useState(false);
   const [editingFitness, setEditingFitness] = useState(false);
   const handleEditingPersonal = () => {
     setEditingPersonal(!editingPersonal);
   }
   const handleSavePersonal = () => {
-    setUser({...user, name: cName, email: cEmail});
-
+    // TODO: update email -> authentication
+    setUser({...user, name: cName});
     // update firestore
+    updateDoc(docRef, { name: cName});
     handleEditingPersonal();
   }
   const handleEditingFitness = () => {
@@ -102,8 +107,8 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
   const handleSaveFitness = () => {
     // TODO: add new weight to the end!
     setUser({...user, height: cHeight})
-
     // update firestore
+    updateDoc(docRef, { height: Number(cHeight)});
     handleEditingFitness();
   }
 
