@@ -40,56 +40,87 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
       setExercises((prevState) => ([...prevState, {name: `${searchText} ${i}`, image: "https://source.unsplash.com/random?exercise"}]))
     }
     // reset filters
-    setMuscle('');
+    setTarget('');
     setType('');
     setDifficulty('');
   }
 
-  const [muscle, setMuscle] = useState('');
-  const handleChangeMuscle = (event) => {
-    setMuscle(event.target.value);
+  const [target, setTarget] = useState('');
+  const handleChangeTarget = (event) => {
+    setTarget(event.target.value);
   };
-  const muscles = [
-    'abdominals',
-    'abductors',
-    'adductors',
-    'biceps',
-    'calves',
-    'chest',
-    'forearms',
-    'glutes',
-    'hamstrings',
-    'lats',
-    'lower_back',
-    'middle_back',
-    'neck',
-    'quadriceps',
-    'traps',
-    'triceps',
+  const targets = [
+    "abductors",
+    "abs",
+    "adductors",
+    "biceps",
+    "calves",
+    "cardiovascular system",
+    "delts",
+    "forearms",
+    "glutes",
+    "hamstrings",
+    "lats",
+    "levator scapulae",
+    "pectorals",
+    "quads",
+    "serratus anterior",
+    "spine",
+    "traps",
+    "triceps",
+    "upper back",
   ];
 
-  const [type, setType] = useState('');
-  const handleChangeType = (event) => {
-    setType(event.target.value);
+  const [bodyPart, setBodyPart] = useState('');
+  const handleChangeBodyPart = (event) => {
+    setBodyPart(event.target.value);
   };
-  const types = [
-    'cardio',
-    'olympic_weightlifting',
-    'plyometrics',
-    'powerlifting',
-    'strength',
-    'stretching',
-    'strongman',
+  const bodyParts = [
+    "back",
+    "cardio",
+    "chest",
+    "lower arms",
+    "lower legs",
+    "neck",
+    "shoulders",
+    "upper arms",
+    "upper legs",
+    "waist",
   ];
 
-  const [difficulty, setDifficulty] = useState('');
-  const handleChangeDifficulty = (event) => {
-    setDifficulty(event.target.value);
+  const [equipment, setEquipment] = useState('');
+  const handleChangeEquipment = (event) => {
+    setEquipment(event.target.value);
   };
-  const difficulties = [
-    'beginner',
-    'intermediate',
-    'expert',
+  const equipments = [
+    "assisted",
+    "band",
+    "barbell",
+    "body weight",
+    "bosu ball",
+    "cable",
+    "dumbbell",
+    "elliptical machine",
+    "ez barbell",
+    "hammer",
+    "kettlebell",
+    "leverage machine",
+    "medicine ball",
+    "olympic barbell",
+    "resistance band",
+    "roller",
+    "rope",
+    "skierg machine",
+    "sled machine",
+    "smith machine",
+    "stability ball",
+    "stationary bike",
+    "stepmill machine",
+    "tire",
+    "trap bar",
+    "upper body ergometer",
+    "weighted",
+    "wheel roller",
   ];
 
   const [showFilters, setShowFilters] = useState(false);
@@ -129,49 +160,49 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
                   </Button>
                 </Box>
                 <FormControl sx={{  mt: 1, mr: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="muscle">Muscle</InputLabel>
+                  <InputLabel id="target">Target</InputLabel>
                   <Select
-                    id="muscle"
-                    value={muscle}
-                    label="Muscle"
-                    onChange={handleChangeMuscle}
+                    id="target"
+                    value={target}
+                    label="Target"
+                    onChange={handleChangeTarget}
                   >
                     <MenuItem value=""><em>None</em></MenuItem>
                     {
-                      muscles.map((muscle) =>
-                        <MenuItem value={muscle}>{muscle}</MenuItem>
+                      targets.map((target) =>
+                        <MenuItem value={target}>{target}</MenuItem>
                       )
                     }
                   </Select>
                 </FormControl>
                 <FormControl sx={{ mt: 1, mr: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="type">Type</InputLabel>
+                  <InputLabel id="bodyPart">Body part</InputLabel>
                   <Select
-                    id="type"
-                    value={type}
-                    label="Type"
-                    onChange={handleChangeType}
+                    id="bodyPart"
+                    value={bodyPart}
+                    label="Body Part"
+                    onChange={handleChangeBodyPart}
                   >
                     <MenuItem value=""><em>None</em></MenuItem>
                     {
-                      types.map((type) =>
-                        <MenuItem value={type}>{type}</MenuItem>
+                      bodyParts.map((bodyPart) =>
+                        <MenuItem value={bodyPart}>{bodyPart}</MenuItem>
                       )
                     }
                   </Select>
                 </FormControl>
                 <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="difficulty">Difficulty</InputLabel>
+                  <InputLabel id="equipment">Equipment</InputLabel>
                   <Select
-                    id="difficulty"
-                    value={difficulty}
-                    label="Difficulty"
-                    onChange={handleChangeDifficulty}
+                    id="equipment"
+                    value={equipment}
+                    label="Equipment"
+                    onChange={handleChangeEquipment}
                   >
                     <MenuItem value=""><em>None</em></MenuItem>
                     {
-                      difficulties.map((difficulty) =>
-                        <MenuItem value={difficulty}>{difficulty}</MenuItem>
+                      equipments.map((equipment) =>
+                        <MenuItem value={equipment}>{equipment}</MenuItem>
                       )
                     }
                   </Select>
