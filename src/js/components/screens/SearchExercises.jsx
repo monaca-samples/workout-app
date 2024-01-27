@@ -28,21 +28,46 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
     setSearchText(e.target.value)
  };
 
-  const onSearch = () => {
+ const searchApi = async (name) => {
+  const url = `https://exercisedb.p.rapidapi.com/exercises/name/${encodeURI(name)}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'd305bad507msh64d76ceedb8695bp136b1ejsn83fac1d20013',
+      'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.text();
+    return JSON.parse(result);
+  } catch (error) {
+    alert(error);
+  }
+ }
+
+  const onSearch = async () => {
     if (searchText.trim().length === 0) {
       alert("Please input something");
+      if (target || bodyPart || equipment) {
+        alert("TODO USE FILTERS");
+      }
       return
     }
 
-    // TODO: return actual data from API
     setExercises([]);
-    for (let i = 0; i < 10; i++) {
-      setExercises((prevState) => ([...prevState, {name: `${searchText} ${i}`, image: "https://source.unsplash.com/random?exercise"}]))
+    const result = await searchApi(searchText.toLowerCase());
+    if (result.length != 0) {
+      setExercises(result);
+    } else {
+      alert("No exercises found")
     }
+
     // reset filters
     setTarget('');
-    setType('');
-    setDifficulty('');
+    setBodyPart('');
+    setEquipment('');
   }
 
   const [target, setTarget] = useState('');
@@ -238,17 +263,16 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
                 <CardMedia
                   component="div"
                   sx={{
-                    // 16:9
-                    pt: '56.25%',
+                    pt: '100%',
                   }}
-                  image={exercise.image}
+                  image={exercise.gifUrl}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
-                    Exercise {exercise.name}
+                    {exercise.name}
                   </Typography>
                   <Typography>
-                    This is an exercise. The explanation is here. This is a long explanation without any meaning.
+                    {`Target muscle: ${exercise.target}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
