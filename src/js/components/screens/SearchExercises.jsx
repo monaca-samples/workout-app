@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Modal from '@mui/material/Modal';
 
 import Bar from '../Bar';
 import Drawer from '../Drawer';
@@ -153,11 +154,72 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
     setShowFilters(!showFilters);
   }
 
+  const [open, setOpen] = useState(false);
+  const [currentExercise, setCurrentExercise] = useState(null);
+  const handleOpen = (currentExercise) => () => {
+    setOpen(true);
+    setCurrentExercise(currentExercise);
+  }
+  const handleClose = () => {
+    setOpen(false);
+  }
+
   return(
     <Box>
       <Bar title={'Search Exercises'} toggleDrawer={toggleDrawer}/>
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
-      
+
+      {
+        currentExercise ?
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+              overflow: "scroll",
+            }}
+          >
+            <Box sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: "65%",
+              transform: 'translate(-50%, -50%)',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 2,
+            }}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {currentExercise.name}
+              </Typography>
+              <Container maxWidth="xs">
+                <CardMedia
+                  component="div"
+                  sx={{
+                    pt: '100%',
+                    
+                  }}
+                  image={currentExercise.gifUrl}
+                />
+              </Container>
+              
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Instructions:
+              </Typography>
+              {
+                currentExercise.instructions.map((instruction, index) => 
+                  <Typography key={index} id={index}>
+                    {index}: {instruction}
+                  </Typography>
+                )
+              }
+            </Box>
+          </Modal>
+          :
+          <></>
+          }
+
       <Box sx={{ pt: 8 }}>
         <Container maxWidth="md">
           <TextField
@@ -276,11 +338,11 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">View</Button>
+                  <Button onClick={handleOpen(exercise)} size="small">View</Button>
                 </CardActions>
               </Card>
             </Grid>
-          ))}
+          ))}          
         </Grid>
       </Container>
     </Box>
