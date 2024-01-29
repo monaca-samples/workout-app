@@ -41,6 +41,7 @@ const Login = () => {
           name: docSnap.data().name,
           weights: docSnap.data().weights,
           height: docSnap.data().height,
+          workout: docSnap.data().workout,
         })
         navigate('/dashboard');
       })
