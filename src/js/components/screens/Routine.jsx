@@ -38,7 +38,6 @@ const Routine = ({ drawerAnchor, toggleDrawer }) => {
   const [creating, setCreating] = useState(false);
 
   const onCreateRoutine = () => {
-    // TODO: call routineGenerator
     setCreating(true);
   }
 

@@ -12,6 +12,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import { userData } from '../state/state';
+import { useAtom } from 'jotai/react';
+
+import { doc, updateDoc } from "firebase/firestore"; 
+import { db } from '../firebase';
+
 import { generateRoutine } from '../routineGenerator';
 
 const RoutineForm = ({ setCreated }) => {
@@ -74,9 +80,55 @@ const RoutineForm = ({ setCreated }) => {
     'hamstrings',
   ];
 
-  const handleCreate = () => {
-    alert('Creating routine...');
-    generateRoutine(days, hours, firstTime, goal, targetGroup);
+  const [user, setUser] = useAtom(userData);
+  const docRef = doc(db, 'users', `${user.email}`);
+  const uploadData = async (workout) => {
+    updateDoc(docRef, { workout: workout });
+  }
+
+  const searchApi = async (id) => {
+    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${encodeURI(id)}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'd305bad507msh64d76ceedb8695bp136b1ejsn83fac1d20013',
+        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+      }
+    };
+  
+    try {
+      const response = await fetch(url, options);
+      const result = await response.text();
+      return JSON.parse(result);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const handleCreate = async () => {
+    const generatedRoutine = generateRoutine(
+      days,
+      hours,
+      firstTime,
+      goal,
+      targetGroup
+    );
+
+    // get actual routine from API
+    const actualRoutine = {}
+    // loop each day of routine
+    for(let i = 0; i < Object.keys(generatedRoutine).length; i++) {
+      actualRoutine[`${i+1}`] = [];
+      for (let j = 0; j < generatedRoutine[`${i+1}`].length; j++) {
+        const exercise = await searchApi(generatedRoutine[`${i+1}`][j])
+        actualRoutine[`${i+1}`].push(exercise);
+      }
+    }
+    
+    // save to Firestore and current state user
+    setUser({...userData, workout: actualRoutine});
+    uploadData(actualRoutine);
+
     setCreated(true);
   }
 
