@@ -61,8 +61,6 @@ const RoutineForm = ({ setCreated }) => {
   const goals = [
     'lose weight',
     'gain muscle',
-    'gain flexibility',
-    'become more athletic',
   ];
   const [targetGroup, setTargetGroup] = useState('');
   const handleChangeTargetGroup = (event) => {
