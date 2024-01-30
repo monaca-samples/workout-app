@@ -20,7 +20,7 @@ import { db } from '../firebase';
 
 import { generateRoutine } from '../routineGenerator';
 
-const RoutineForm = ({ setCreated }) => {
+const RoutineForm = ({ setLoading, setCreated }) => {
   const steps = ['Basic Details', 'Advanced details'];
   const [activeStep, setActiveStep] = useState(0);
 
@@ -104,6 +104,7 @@ const RoutineForm = ({ setCreated }) => {
   }
 
   const handleCreate = async () => {
+    setLoading(true);
     const generatedRoutine = generateRoutine(
       days,
       hours,
@@ -127,6 +128,7 @@ const RoutineForm = ({ setCreated }) => {
     setUser({...userData, workout: actualRoutine});
     uploadData(actualRoutine);
 
+    setLoading(false);
     setCreated(true);
   }
 

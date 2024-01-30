@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Modal from '@mui/material/Modal';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Bar from '../Bar';
 import Drawer from '../Drawer';
@@ -51,11 +52,12 @@ const Routine = ({ drawerAnchor, toggleDrawer }) => {
     setOpen(false);
   }
 
+  const [loading, setLoading] = useState(false);
+
   return(
     <Box sx={{ display: 'flex' }}>
       <Bar title={'Routine'} toggleDrawer={toggleDrawer}/>
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
-
       {
         currentExercise ?
           <Modal
@@ -142,7 +144,23 @@ const Routine = ({ drawerAnchor, toggleDrawer }) => {
         :
         (creating ?
           <Container sx={{ pt: 10 }}>
-            <RoutineForm setCreated={setCreated} />
+          {
+            loading ?
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <CircularProgress />
+                <Typography variant="h5" sx={{ mt: 2 }}gutterBottom>Generating routine...</Typography>
+                <Typography>Please wait a minute</Typography>
+              </Box>
+              :
+              <RoutineForm setLoading={setLoading} setCreated={setCreated} />
+          }
           </Container>
           :
           <Container sx={{ pt:10 }}>
