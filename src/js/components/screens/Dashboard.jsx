@@ -15,6 +15,18 @@ import BmiGauge from '../BmiGauge';
 const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
 
+  const listExercisesNames = (day) => {
+    let names = "";
+    for (let i = 0; i < user.workout[day].length; i++) {
+      if (i === user.workout[day].length-1) {
+        names += user.workout[day][i].name;
+      } else {
+        names = names + user.workout[day][i].name + ", ";
+      }
+    }
+    return names
+  }
+
   return(
     <Box sx={{ display: 'flex' }}>
 
@@ -59,42 +71,24 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 240,
               }}
             >
-              <Typography variant="h6">
+              <Typography variant="h6" gutterBottom>
                 Routine Overview
               </Typography>
-            </Paper>
-          </Grid>
-          {/* More elements... */}
-          <Grid item xs={12} md={4} lg={3}>
-            <Paper
-              sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                height: 240,
-              }}
-            >
               <Typography>
-                More elements...
+                Number of workouts a week: {Object.keys(user.workout).length}
               </Typography>
-            </Paper>
-          </Grid>
-          {/* More elements... */}
-          <Grid item xs={12} md={4} lg={3}>
-            <Paper
-              sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                height: 240,
-              }}
-            >
-              <Typography>
-                More elements...
-              </Typography>
+              {
+                Object.keys(user.workout).map((day) => (
+                  <>
+                    <Typography sx={{ mt: 1 }}>Day {day}:</Typography>
+                    <Typography>
+                      {listExercisesNames(day)}
+                    </Typography>
+                  </>
+                ))
+              }
             </Paper>
           </Grid>
         </Grid>
