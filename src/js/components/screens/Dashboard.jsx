@@ -37,7 +37,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                 height: 240,
               }}
             >
-              <WeightChart height={user.height} weights={user.weights}/>
+              <WeightChart height={user.height} weights={user.weights.slice(-6)}/>
             </Paper>
           </Grid>
           {/* BMI */}

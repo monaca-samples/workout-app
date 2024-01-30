@@ -105,10 +105,16 @@ const Profile = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     setEditingFitness(!editingFitness);
   }
   const handleSaveFitness = () => {
-    // TODO: add new weight to the end!
-    setUser({...user, height: cHeight})
-    // update firestore
-    updateDoc(docRef, { height: Number(cHeight)});
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    const formattedToday = dd + '/' + mm + '/' + yyyy;
+
+    setUser({...user, height: cHeight, weights:[...user.weights, {date: formattedToday, weight: cWeight}]})
+    updateDoc(docRef, { height: Number(cHeight), weights:[...user.weights, {date: formattedToday, weight: cWeight}]});
     handleEditingFitness();
   }
 
@@ -216,7 +222,6 @@ const Profile = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                 </Box>
                 <Box sx={{p:1}}>
                   <TextField
-                    disabled
                     onChange={changeWeight}
                     fullWidth
                     variant='standard'
