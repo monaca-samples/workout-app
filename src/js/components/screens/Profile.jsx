@@ -18,7 +18,7 @@ import { useAtom } from 'jotai/react';
 import { doc, updateDoc } from "firebase/firestore"; 
 import { db } from '../../firebase';
 
-const Profile = ({ drawerAnchor, toggleDrawer }) => {
+const Profile = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
 
   const [user, setUser] = useAtom(userData);
 
@@ -114,7 +114,7 @@ const Profile = ({ drawerAnchor, toggleDrawer }) => {
 
   return(
     <Box sx={{ display: 'flex' }}>
-      <Bar title={'Profile'} toggleDrawer={toggleDrawer}/>
+      <Bar title={'Profile'} toggleDrawer={toggleDrawer} changeTheme={changeTheme}/>
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
       
       <Container sx={{ pt: 10 }} maxWidth="lg">

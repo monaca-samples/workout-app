@@ -18,7 +18,7 @@ import RoutineForm from '../RoutineForm';
 import { userData } from '../../state/state';
 import { useAtomValue } from "jotai/react";
 
-const Routine = ({ drawerAnchor, toggleDrawer }) => {
+const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
 
   function isEmpty(obj) {
@@ -56,7 +56,7 @@ const Routine = ({ drawerAnchor, toggleDrawer }) => {
 
   return(
     <Box sx={{ display: 'flex' }}>
-      <Bar title={'Routine'} toggleDrawer={toggleDrawer}/>
+      <Bar title={'Routine'} toggleDrawer={toggleDrawer} changeTheme={changeTheme} />
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
       {
         currentExercise ?

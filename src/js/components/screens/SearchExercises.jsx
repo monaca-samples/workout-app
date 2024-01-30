@@ -21,7 +21,7 @@ import Modal from '@mui/material/Modal';
 import Bar from '../Bar';
 import Drawer from '../Drawer';
 
-const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
+const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const [searchText, setSearchText] = useState('');
   const [exercises, setExercises] = useState([]);
 
@@ -166,7 +166,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer }) => {
 
   return(
     <Box>
-      <Bar title={'Search Exercises'} toggleDrawer={toggleDrawer}/>
+      <Bar title={'Search Exercises'} toggleDrawer={toggleDrawer} changeTheme={changeTheme} />
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
 
       {

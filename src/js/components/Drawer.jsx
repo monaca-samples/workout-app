@@ -57,7 +57,7 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
             <ListItemIcon>
               <DashboardIcon/>
             </ListItemIcon>
-            <ListItemText sx={{ color: 'black'}} primary={'Dashboard'} />
+            <ListItemText primary={'Dashboard'} />
           </ListItemButton>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'profile'} disablePadding>
@@ -65,7 +65,7 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
             <ListItemIcon>
               <AccountCircleIcon/>
             </ListItemIcon>
-            <ListItemText sx={{ color: 'black'}} primary={'Profile'} />
+            <ListItemText  primary={'Profile'} />
           </ListItemButton>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'routine'} disablePadding>
@@ -73,7 +73,7 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
             <ListItemIcon>
               <FitnessCenterIcon/>
             </ListItemIcon>
-            <ListItemText sx={{ color: 'black'}} primary={'Routine'} />
+            <ListItemText primary={'Routine'} />
           </ListItemButton>
         </ListItem>
         <ListItem sx={{ display: 'block' }} key={'search'} disablePadding>
@@ -81,16 +81,16 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
             <ListItemIcon>
               <SearchIcon/>
             </ListItemIcon>
-            <ListItemText sx={{ color: 'black', mr: 2 }} primary={'Search Exercises'} />
+            <ListItemText sx={{ mr: 2 }} primary={'Search Exercises'} />
           </ListItemButton>
         </ListItem>
         <Divider />
-        <ListItem sx={{ display: 'block' }} key={'logout'} disablePadding>
+        <ListItem key={'logout'} disablePadding>
           <ListItemButton sx={{ color:'red' }} onClick={handleLogOut}>
             <ListItemIcon>
               <LogoutIcon sx={{ color:'red' }}/>
             </ListItemIcon>
-            <ListItemText sx={{ }} primary={'Log Out!'} />
+            <ListItemText primary={'Log Out!'} />
           </ListItemButton>
         </ListItem>
       </List>

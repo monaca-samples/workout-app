@@ -12,13 +12,13 @@ import { userData } from '../../state/state';
 import { useAtomValue } from 'jotai/react';
 import BmiGauge from '../BmiGauge';
 
-const Dashboard = ({ drawerAnchor, toggleDrawer }) => {
+const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
 
   return(
     <Box sx={{ display: 'flex' }}>
 
-      <Bar title={'Dashboard'} toggleDrawer={toggleDrawer}/>
+      <Bar title={'Dashboard'} toggleDrawer={toggleDrawer} changeTheme={changeTheme}/>
 
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
 

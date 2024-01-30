@@ -4,8 +4,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import ContrastIcon from '@mui/icons-material/Contrast';
 
-const Bar = ({ title, toggleDrawer }) => {
+const Bar = ({ title, toggleDrawer, changeTheme }) => {
   return(
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -23,6 +24,15 @@ const Bar = ({ title, toggleDrawer }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
+          <IconButton
+            size="large"
+            edge="end"
+            color="inherit"
+            aria-label="change-theme"
+            onClick={ changeTheme }
+          >
+            <ContrastIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
