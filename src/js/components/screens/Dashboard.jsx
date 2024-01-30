@@ -40,7 +40,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
         </Typography>
         <Grid container spacing={2}>
           {/* Weight Chart */}
-          <Grid item xs={12} md={8} lg={9}>
+          <Grid item xs={12} md={9} lg={9}>
             <Paper
               sx={{
                 p: 2,
@@ -53,7 +53,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             </Paper>
           </Grid>
           {/* BMI */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={3} lg={3}>
             <Paper
               sx={{
                 p: 2,
@@ -65,7 +65,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             </Paper>
           </Grid>
           {/* Routine overview */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={12} lg={12}>
             <Paper
               sx={{
                 p: 2,
