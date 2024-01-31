@@ -10,6 +10,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Modal from '@mui/material/Modal';
 import CircularProgress from '@mui/material/CircularProgress';
+import Grid from '@mui/material/Grid';
 
 import Bar from '../Bar';
 import Drawer from '../Drawer';
@@ -17,6 +18,8 @@ import RoutineForm from '../RoutineForm';
 
 import { userData } from '../../state/state';
 import { useAtomValue } from "jotai/react";
+
+import { CapacitorCalendar } from '@sharryland/capacitor-calendar-plugin';
 
 const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
@@ -53,6 +56,28 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   }
 
   const [loading, setLoading] = useState(false);
+
+  const listExercisesNames = (day) => {
+    let names = "";
+    for (let i = 0; i < user.workout[day].length; i++) {
+      if (i === user.workout[day].length-1) {
+        names += user.workout[day][i].name;
+      } else {
+        names = names + user.workout[day][i].name + ", ";
+      }
+    }
+    return names
+  }
+
+  const addCalendarEvent = (key) => {
+    const exercises = listExercisesNames(key)
+    const calendarEvent = {
+      eventTitle: `Workout day ${key}`,
+      eventDescription: `Do this today: ${exercises}`,
+      location: 'Gym',
+    };
+    CapacitorCalendar.saveEventToCalendar(calendarEvent)
+  }
 
   return(
     <Box sx={{ display: 'flex' }}>
@@ -103,9 +128,14 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
           {
             Object.keys(user.workout).map((key) => (
               <>
-                <Typography variant="h5" gutterBottom>
-                  Day {key}
-                </Typography>
+                <Grid container direction="row" justifyContent="space-between">
+                  <Typography variant="h5" gutterBottom>
+                    Day {key}
+                  </Typography>
+                  <Button onClick={() => addCalendarEvent(key)}>
+                    Add to calendar
+                  </Button>
+                </Grid>
                 <Carousel
                   autoPlay={false}
                   animation="slide"

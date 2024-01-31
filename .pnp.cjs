@@ -40,6 +40,7 @@ const RAW_RUNTIME_STATE =
           ["@mui/system", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@mui/utils", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@mui/x-charts", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:6.19.1"],\
+          ["@sharryland/capacitor-calendar-plugin", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:1.0.4"],\
           ["@trapezedev/configure", "npm:7.0.10"],\
           ["@types/react", "npm:18.2.48"],\
           ["@types/react-dom", "npm:18.2.18"],\
@@ -3011,6 +3012,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@sharryland/capacitor-calendar-plugin", [\
+      ["npm:1.0.4", {\
+        "packageLocation": "./.yarn/unplugged/@sharryland-capacitor-calendar-plugin-virtual-91cea9a7db/node_modules/@sharryland/capacitor-calendar-plugin/",\
+        "packageDependencies": [\
+          ["@sharryland/capacitor-calendar-plugin", "npm:1.0.4"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:1.0.4", {\
+        "packageLocation": "./.yarn/unplugged/@sharryland-capacitor-calendar-plugin-virtual-91cea9a7db/node_modules/@sharryland/capacitor-calendar-plugin/",\
+        "packageDependencies": [\
+          ["@sharryland/capacitor-calendar-plugin", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:1.0.4"],\
+          ["@capacitor/core", "npm:5.5.1"],\
+          ["@types/capacitor__core", null]\
+        ],\
+        "packagePeers": [\
+          "@capacitor/core",\
+          "@types/capacitor__core"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@trapezedev/configure", [\
       ["npm:7.0.10", {\
         "packageLocation": "../../.yarn/berry/cache/@trapezedev-configure-npm-7.0.10-4d9fa6ecaa-10c0.zip/node_modules/@trapezedev/configure/",\
@@ -3822,6 +3845,7 @@ const RAW_RUNTIME_STATE =
           ["@mui/system", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@mui/utils", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:5.15.5"],\
           ["@mui/x-charts", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:6.19.1"],\
+          ["@sharryland/capacitor-calendar-plugin", "virtual:1993a3afd95b5a05b35b163908f5c50823121159dba53e035aca1048b7a0585cc93a1fd5e05c780b6b4c741ad379c022d0c8aa6eae883ea5b88fa7edab0710b9#npm:1.0.4"],\
           ["@trapezedev/configure", "npm:7.0.10"],\
           ["@types/react", "npm:18.2.48"],\
           ["@types/react-dom", "npm:18.2.18"],\

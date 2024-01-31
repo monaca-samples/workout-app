@@ -2160,6 +2160,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sharryland/capacitor-calendar-plugin@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@sharryland/capacitor-calendar-plugin@npm:1.0.4"
+  peerDependencies:
+    "@capacitor/core": ^5.6.0
+  checksum: aa62988a21714eab1de299c4c589a712a9cc0a7168407fcbd189c459a8e474942d21ad88dc03ecb03cf36ad66dbb83882470ea819c705cdb859ab4f212bd9b78
+  languageName: node
+  linkType: hard
+
 "@trapezedev/configure@npm:7.0.10":
   version: 7.0.10
   resolution: "@trapezedev/configure@npm:7.0.10"
@@ -2872,6 +2881,7 @@ __metadata:
     "@mui/system": "npm:^5.15.5"
     "@mui/utils": "npm:^5.15.5"
     "@mui/x-charts": "npm:^6.19.1"
+    "@sharryland/capacitor-calendar-plugin": "npm:^1.0.4"
     "@trapezedev/configure": "npm:7.0.10"
     "@types/react": "npm:^18.2.48"
     "@types/react-dom": "npm:^18.2.18"
