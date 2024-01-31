@@ -193,17 +193,6 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 {currentExercise.name}
               </Typography>
-              <Container maxWidth="xs">
-                <CardMedia
-                  component="div"
-                  sx={{
-                    pt: '100%',
-                    
-                  }}
-                  image={currentExercise.gifUrl}
-                />
-              </Container>
-              
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Instructions:
               </Typography>
@@ -338,7 +327,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button onClick={handleOpen(exercise)} size="small">View</Button>
+                  <Button onClick={handleOpen(exercise)} size="small">View Instructions</Button>
                 </CardActions>
               </Card>
             </Grid>
