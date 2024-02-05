@@ -28,7 +28,7 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   }
 
   return(
-    <Box sx={{ display: 'flex' }}>
+    <Box>
 
       <Bar title={'Dashboard'} toggleDrawer={toggleDrawer} changeTheme={changeTheme}/>
 

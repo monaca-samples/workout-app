@@ -80,7 +80,7 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   }
 
   return(
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <Bar title={'Routine'} toggleDrawer={toggleDrawer} changeTheme={changeTheme} />
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
       {

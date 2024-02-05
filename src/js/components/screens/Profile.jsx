@@ -119,7 +119,7 @@ const Profile = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   }
 
   return(
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <Bar title={'Profile'} toggleDrawer={toggleDrawer} changeTheme={changeTheme}/>
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
       

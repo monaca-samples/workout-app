@@ -61,7 +61,6 @@ const Login = () => {
         let newWorkout = {}
         for(let i = 0; i < Object.keys(oldWorkout).length; i++) {
           newWorkout[`${i+1}`] = [];
-          console.log(newWorkout);
           for (let j = 0; j < oldWorkout[`${i+1}`].length; j++) {
             updateWithAPI(oldWorkout[`${i+1}`][j].id, newWorkout[`${i+1}`]);
           }
@@ -74,7 +73,7 @@ const Login = () => {
           height: docSnap.data().height,
           workout: newWorkout,
         })
-        navigate('/dashboard');
+        navigate('/search-exercises');
       })
       .catch((error) => {
         alert("Error reading user");
