@@ -34,7 +34,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'd305bad507msh64d76ceedb8695bp136b1ejsn83fac1d20013',
+      'X-RapidAPI-Key': 'ca6cd91ec8msh872764000ace143p177942jsn1028160adbd1',
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
     }
   };
@@ -58,7 +58,19 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     }
 
     setExercises([]);
-    const result = await searchApi(searchText.toLowerCase());
+    let result = await searchApi(searchText.toLowerCase());
+
+    // filter results
+    if (target.length != 0) {
+      result = result.filter(exercise => exercise.target === target);
+    }
+    if (equipment.length != 0) {
+      result = result.filter(exercise => exercise.equipment === equipment);
+    }
+    if (bodyPart.length != 0) {
+      result = result.filter(exercise => exercise.bodyPart === bodyPart);
+    }
+
     if (result.length != 0) {
       setExercises(result);
     } else {
