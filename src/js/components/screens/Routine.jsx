@@ -98,13 +98,26 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
               position: 'absolute',
               top: '50%',
               left: '50%',
-              width: "65%",
+              width: "75%",
               transform: 'translate(-50%, -50%)',
               bgcolor: 'background.paper',
               boxShadow: 24,
               p: 2,
             }}>
-              
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Box
+                  component="img"
+                  src={currentExercise.gifUrl}
+                  sx={{
+                    maxHeight: { xs: 150, md: 150 },
+                  }}
+                >
+                </Box>
+              </Box>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Instructions:
               </Typography>
