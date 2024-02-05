@@ -26,6 +26,26 @@ const Login = () => {
     setPassword(e.target.value);
   }
 
+  const updateWithAPI = async (id, workoutDay) => {
+    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${encodeURI(id)}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'ca6cd91ec8msh872764000ace143p177942jsn1028160adbd1',
+        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+      }
+    };
+  
+    try {
+      const response = await fetch(url, options);
+      const result = await response.text();
+      workoutDay.push(JSON.parse(result));
+      return JSON.parse(result);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   const setUserData = useSetAtom(userData);
 
   const handleSubmit = () => {
@@ -36,12 +56,23 @@ const Login = () => {
       const docRef = doc(db, 'users', `${email}`);
       getDoc(docRef)
       .then((docSnap) => {
+        // refecth images for workout (they expire every 24hours)
+        let oldWorkout = docSnap.data().workout;
+        let newWorkout = {}
+        for(let i = 0; i < Object.keys(oldWorkout).length; i++) {
+          newWorkout[`${i+1}`] = [];
+          console.log(newWorkout);
+          for (let j = 0; j < oldWorkout[`${i+1}`].length; j++) {
+            updateWithAPI(oldWorkout[`${i+1}`][j].id, newWorkout[`${i+1}`]);
+          }
+        }
+
         setUserData({
           email: docSnap.data().email,
           name: docSnap.data().name,
           weights: docSnap.data().weights,
           height: docSnap.data().height,
-          workout: docSnap.data().workout,
+          workout: newWorkout,
         })
         navigate('/dashboard');
       })
