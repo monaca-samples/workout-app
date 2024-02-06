@@ -31,7 +31,7 @@ const Login = () => {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'ca6cd91ec8msh872764000ace143p177942jsn1028160adbd1',
+        'X-RapidAPI-Key': '387f35e397mshad24a693ded25d5p17f2f1jsn53c7cf51a18f',
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
       }
     };
@@ -73,7 +73,7 @@ const Login = () => {
           height: docSnap.data().height,
           workout: newWorkout,
         })
-        navigate('/search-exercises');
+        navigate('/dashboard');
       })
       .catch((error) => {
         alert("Error reading user");

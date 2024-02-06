@@ -8,8 +8,12 @@ import ContrastIcon from '@mui/icons-material/Contrast';
 
 const Bar = ({ title, toggleDrawer, changeTheme }) => {
   return(
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+    <Box sx={{ flexGrow: 1}}>
+      <AppBar position="fixed" sx={{ 
+        pt: `env(safe-area-inset-top)`,
+        pl: `env(safe-area-inset-left)`,
+        pr: `env(safe-area-inset-right)`
+      }}>
         <Toolbar>
           <IconButton
             size="large"

@@ -51,7 +51,11 @@ const Drawer = ({ drawerAnchor, toggleDrawer }) => {
       onOpen={ toggleDrawer(true) }
       onClose={ toggleDrawer(false) }
     >
-      <List>
+      <List sx={{
+        pt: `env(safe-area-inset-top)`,
+        pl: `env(safe-area-inset-left)`,
+        pb: `env(safe-area-inset-bottom)`
+      }}>
       <ListItem sx={{ display: 'block' }} key={'dashboard'} disablePadding>
           <ListItemButton onClick={handleDashboard}>
             <ListItemIcon>
