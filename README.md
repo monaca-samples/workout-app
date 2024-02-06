@@ -1,14 +1,18 @@
-# TESTING - DO NOT USE IT
+# Workout App
 
-## Created with Capacitor Create App
+App that let's you monitor your weight, create a workout routine, search for exercises and add your routine to your calendar.
 
-This app was created using [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app),
-and comes with a very minimal shell for building an app.
+## Technologies used
+- [Monaca](https://ja.monaca.io/)
+- [Capacitor](https://capacitorjs.com/)
+- [React](https://react.dev/)
+- [Material UI for React](https://mui.com/material-ui/getting-started/)
+- [Capacitor Calendar Plugin](https://github.com/sharryland-org/capacitor-calendar-plugin)
+- [Firebase](https://firebase.google.com/)
+- [RapidAPI ExerciseDB](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb)
 
-### Running this example
 
-To run the provided example, you can use `npm run dev` command.
+## Demo
 
-```bash
-npm run dev
-```
+https://github.com/juan-serrano-soria/workout-app/assets/54719300/45ca68a6-185b-4b3f-a915-a622975524cb
+
