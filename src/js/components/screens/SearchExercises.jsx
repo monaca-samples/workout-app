@@ -51,9 +51,6 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const onSearch = async () => {
     if (searchText.trim().length === 0) {
       alert("Please input something");
-      if (target || bodyPart || equipment) {
-        alert("TODO USE FILTERS");
-      }
       return
     }
 

@@ -33,11 +33,6 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     return true;
   }
 
-  // TODO: Images URLs change evry 24hours
-  const getImage = (exercise) => {
-    return exercise.gifUrl
-  }
-
   const [created, setCreated] = useState(!isEmpty(user.workout));
   const [creating, setCreating] = useState(false);
 
@@ -165,7 +160,7 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                           sx={{
                             pt: '100%',
                           }}
-                          image={getImage(exercise)}
+                          image={exercise.gifUrl}
                         />
                         <CardContent sx={{ flexGrow: 1 }}>
                           <Typography gutterBottom variant="h5" component="h2">

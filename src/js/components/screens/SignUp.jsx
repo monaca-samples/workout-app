@@ -9,7 +9,6 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    console.log("TODO")
     navigate('/dashboard');
   }
 

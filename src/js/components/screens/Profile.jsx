@@ -95,7 +95,6 @@ const Profile = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     setEditingPersonal(!editingPersonal);
   }
   const handleSavePersonal = () => {
-    // TODO: update email -> authentication
     setUser({...user, name: cName});
     // update firestore
     updateDoc(docRef, { name: cName});
