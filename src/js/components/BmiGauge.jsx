@@ -13,7 +13,7 @@ const BmiGauge = () => {
   }
 
   const gageCalc = (bmi) => {
-    var result = 0;
+    let result = 0;
     if (bmi < 18.5) {
       result = getPercentage(bmi, 16, 18.5, 0);
     } else if (bmi >= 18.5 && bmi < 25) {
