@@ -139,8 +139,8 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             Your Weekly Routine!
           </Typography>
           {
-            Object.keys(user.workout).map((key) => (
-              <>
+            Object.keys(user.workout).map((key, index) => (
+              <div key={index}>
                 <Grid container direction="row" justifyContent="space-between">
                   <Typography variant="h5" gutterBottom>
                     Day {key}
@@ -156,8 +156,8 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                   navButtonsAlwaysInvisible={true}
                 >
                   {
-                    user.workout[key].map((exercise) => (
-                      <Card key={exercise.id}
+                    user.workout[key].map((exercise, index) => (
+                      <Card key={index}
                         sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                       >
                         <CardMedia
@@ -179,7 +179,7 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                     ))
                   }
                 </Carousel>
-              </>
+              </div>
             ))
 
           }

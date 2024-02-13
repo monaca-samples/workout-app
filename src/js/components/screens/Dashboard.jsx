@@ -80,13 +80,13 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                 Number of workouts a week: {Object.keys(user.workout).length}
               </Typography>
               {
-                Object.keys(user.workout).map((day) => (
-                  <>
+                Object.keys(user.workout).map((day, index) => (
+                  <div key={index}>
                     <Typography sx={{ mt: 1 }}>Day {day}:</Typography>
                     <Typography>
                       {listExercisesNames(day)}
                     </Typography>
-                  </>
+                  </div>
                 ))
               }
             </Paper>

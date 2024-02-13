@@ -202,8 +202,8 @@ const RoutineForm = ({ setLoading, setCreated }) => {
               >
                 <MenuItem value=""><em>None in particular</em></MenuItem>
                 {
-                  goals.map((goal) =>
-                    <MenuItem value={goal}>{goal}</MenuItem>
+                  goals.map((goal, index) =>
+                    <MenuItem key={index} value={goal}>{goal}</MenuItem>
                   )
                 }
               </Select>
@@ -221,8 +221,8 @@ const RoutineForm = ({ setLoading, setCreated }) => {
               >
                 <MenuItem value=""><em>None in particular</em></MenuItem>
                 {
-                  targets.map((target) =>
-                    <MenuItem value={target}>{target}</MenuItem>
+                  targets.map((target, index) =>
+                    <MenuItem key={index} value={target}>{target}</MenuItem>
                   )
                 }
               </Select>
@@ -240,8 +240,8 @@ const RoutineForm = ({ setLoading, setCreated }) => {
         Creating Routine...
       </Typography>
       <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-        {steps.map((label) => (
-          <Step key={label}>
+        {steps.map((label, index) => (
+          <Step key={index}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}

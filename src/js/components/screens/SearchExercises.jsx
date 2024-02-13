@@ -268,8 +268,8 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                   >
                     <MenuItem value=""><em>None</em></MenuItem>
                     {
-                      targets.map((target) =>
-                        <MenuItem value={target}>{target}</MenuItem>
+                      targets.map((target, index) =>
+                        <MenuItem key={index} value={target}>{target}</MenuItem>
                       )
                     }
                   </Select>
@@ -284,8 +284,8 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                   >
                     <MenuItem value=""><em>None</em></MenuItem>
                     {
-                      bodyParts.map((bodyPart) =>
-                        <MenuItem value={bodyPart}>{bodyPart}</MenuItem>
+                      bodyParts.map((bodyPart, index) =>
+                        <MenuItem key={index} value={bodyPart}>{bodyPart}</MenuItem>
                       )
                     }
                   </Select>
@@ -300,8 +300,8 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
                   >
                     <MenuItem value=""><em>None</em></MenuItem>
                     {
-                      equipments.map((equipment) =>
-                        <MenuItem value={equipment}>{equipment}</MenuItem>
+                      equipments.map((equipment, index) =>
+                        <MenuItem key={index} value={equipment}>{equipment}</MenuItem>
                       )
                     }
                   </Select>
@@ -329,8 +329,8 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
 
       <Container sx={{ py: 4 }} maxWidth="md">
         <Grid container spacing={2}>
-          {exercises.map((exercise) => (
-            <Grid item key={exercise.name} xs={12} sm={6} md={4}>
+          {exercises.map((exercise, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4}>
               <Card
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
               >
