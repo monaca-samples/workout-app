@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import Box from '@mui/material/Box';
-import Bar from '../Bar';
-import Drawer from '../Drawer';
+import Bar from 'js/components/Bar';
+import Drawer from 'js/components/Drawer';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -12,11 +12,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 
-import { userData } from '../../state/state';
+import { userData } from 'js/state/state';
 import { useAtom } from 'jotai/react';
 
 import { doc, updateDoc } from "firebase/firestore"; 
-import { db } from '../../firebase';
+import { db } from 'js/firebase';
 
 const Profile = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
 

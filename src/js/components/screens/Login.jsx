@@ -5,13 +5,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
-import { auth, db } from '../../firebase';
+import { auth, db } from 'js/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 import { useState } from 'react';
 
-import { userData } from '../../state/state';
+import { userData } from 'js/state/state';
 import { useSetAtom } from 'jotai/react';
 
 const Login = () => {

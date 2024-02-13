@@ -4,13 +4,13 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import Bar from '../Bar';
-import Drawer from '../Drawer';
-import WeightChart from '../WeightChart';
+import Bar from 'js/components/Bar';
+import Drawer from 'js/components//Drawer';
+import WeightChart from 'js/components//WeightChart';
 
-import { userData } from '../../state/state';
+import { userData } from 'js/state/state';
 import { useAtomValue } from 'jotai/react';
-import BmiGauge from '../BmiGauge';
+import BmiGauge from 'js/components/BmiGauge';
 
 const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);

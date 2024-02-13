@@ -18,8 +18,8 @@ import Select from '@mui/material/Select';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Modal from '@mui/material/Modal';
 
-import Bar from '../Bar';
-import Drawer from '../Drawer';
+import Bar from 'js/components/Bar';
+import Drawer from 'js/components/Drawer';
 
 const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const [searchText, setSearchText] = useState('');
@@ -34,7 +34,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'ca6cd91ec8msh872764000ace143p177942jsn1028160adbd1',
+      'X-RapidAPI-Key': '387f35e397mshad24a693ded25d5p17f2f1jsn53c7cf51a18f',
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
     }
   };

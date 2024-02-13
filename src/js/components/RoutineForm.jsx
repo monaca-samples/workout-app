@@ -12,13 +12,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import { userData } from '../state/state';
+import { userData } from 'js/state/state';
 import { useAtom } from 'jotai/react';
 
 import { doc, updateDoc } from "firebase/firestore"; 
-import { db } from '../firebase';
+import { db } from 'js/firebase';
 
-import { generateRoutine } from '../routineGenerator';
+import { generateRoutine } from 'js/routineGenerator';
 
 const RoutineForm = ({ setLoading, setCreated }) => {
   const steps = ['Basic Details', 'Advanced details'];
@@ -89,7 +89,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'd305bad507msh64d76ceedb8695bp136b1ejsn83fac1d20013',
+        'X-RapidAPI-Key': '387f35e397mshad24a693ded25d5p17f2f1jsn53c7cf51a18f',
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
       }
     };

@@ -12,11 +12,11 @@ import Modal from '@mui/material/Modal';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 
-import Bar from '../Bar';
-import Drawer from '../Drawer';
-import RoutineForm from '../RoutineForm';
+import Bar from 'js/components/Bar';
+import Drawer from 'js/components/Drawer';
+import RoutineForm from 'js/components/RoutineForm';
 
-import { userData } from '../../state/state';
+import { userData } from 'js/state/state';
 import { useAtomValue } from "jotai/react";
 
 import { CapacitorCalendar } from '@sharryland/capacitor-calendar-plugin';

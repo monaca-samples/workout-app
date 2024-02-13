@@ -6,12 +6,12 @@ import { useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import Login from "./components/screens/Login";
-import SignUp from "./components/screens/SignUp";
-import Dashboard from "./components/screens/Dashboard";
-import Profile from "./components/screens/Profile";
-import Routine from "./components/screens/Routine";
-import SearchExercises from "./components/screens/SearchExercises";
+import Login from "js/components/screens/Login";
+import SignUp from "js/components/screens/SignUp";
+import Dashboard from "js/components/screens/Dashboard";
+import Profile from "js/components/screens/Profile";
+import Routine from "js/components/screens/Routine";
+import SearchExercises from "js/components/screens/SearchExercises";
 
 const App =() => {
   const [drawerAnchor, setDrawerAnchor] = useState(false);

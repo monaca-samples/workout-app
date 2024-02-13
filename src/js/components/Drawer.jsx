@@ -13,7 +13,7 @@ import Divider from '@mui/material/Divider';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-import { auth } from '../firebase';
+import { auth } from 'js/firebase';
 import { signOut } from 'firebase/auth';
 
 const Drawer = ({ drawerAnchor, toggleDrawer }) => {

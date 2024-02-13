@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import { useAtomValue } from "jotai/react";
-import { userData } from "../state/state";
+import { userData } from "js/state/state";
 
 const BmiGauge = () => {
   const user = useAtomValue(userData);
