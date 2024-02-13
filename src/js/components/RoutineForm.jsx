@@ -20,6 +20,8 @@ import { db } from 'js/firebase';
 
 import { generateRoutine } from 'js/routineGenerator';
 
+import { env } from "/env";
+
 const RoutineForm = ({ setLoading, setCreated }) => {
   const steps = ['Basic Details', 'Advanced details'];
   const [activeStep, setActiveStep] = useState(0);
@@ -89,7 +91,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '387f35e397mshad24a693ded25d5p17f2f1jsn53c7cf51a18f',
+        'X-RapidAPI-Key': env.WORKOUT_API_KEY,
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
       }
     };

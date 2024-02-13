@@ -21,6 +21,8 @@ import Modal from '@mui/material/Modal';
 import Bar from 'js/components/Bar';
 import Drawer from 'js/components/Drawer';
 
+import { env } from "/env";
+
 const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const [searchText, setSearchText] = useState('');
   const [exercises, setExercises] = useState([]);
@@ -34,7 +36,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '387f35e397mshad24a693ded25d5p17f2f1jsn53c7cf51a18f',
+      'X-RapidAPI-Key': env.WORKOUT_API_KEY,
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
     }
   };
