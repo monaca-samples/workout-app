@@ -1,16 +1,16 @@
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
-import Bar from 'js/components/Bar';
-import Drawer from 'js/components//Drawer';
-import WeightChart from 'js/components//WeightChart';
+import Bar from "js/components/Bar";
+import Drawer from "js/components//Drawer";
+import WeightChart from "js/components//WeightChart";
 
-import { userData } from 'js/state/state';
-import { useAtomValue } from 'jotai/react';
-import BmiGauge from 'js/components/BmiGauge';
+import { userData } from "js/state/state";
+import { useAtomValue } from "jotai/react";
+import BmiGauge from "js/components/BmiGauge";
 
 const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
@@ -18,19 +18,22 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const listExercisesNames = (day) => {
     let names = "";
     for (let i = 0; i < user.workout[day].length; i++) {
-      if (i === user.workout[day].length-1) {
+      if (i === user.workout[day].length - 1) {
         names += user.workout[day][i].name;
       } else {
         names = names + user.workout[day][i].name + ", ";
       }
     }
-    return names
-  }
+    return names;
+  };
 
-  return(
+  return (
     <Box>
-
-      <Bar title={'Dashboard'} toggleDrawer={toggleDrawer} changeTheme={changeTheme}/>
+      <Bar
+        title={"Dashboard"}
+        toggleDrawer={toggleDrawer}
+        changeTheme={changeTheme}
+      />
 
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
 
@@ -44,12 +47,15 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             <Paper
               sx={{
                 p: 2,
-                display: 'flex',
-                flexDirection: 'column',
+                display: "flex",
+                flexDirection: "column",
                 height: 240,
               }}
             >
-              <WeightChart height={user.height} weights={user.weights.slice(-6)}/>
+              <WeightChart
+                height={user.height}
+                weights={user.weights.slice(-6)}
+              />
             </Paper>
           </Grid>
           {/* BMI */}
@@ -57,8 +63,8 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             <Paper
               sx={{
                 p: 2,
-                display: 'flex',
-                flexDirection: 'column',
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <BmiGauge />
@@ -69,8 +75,8 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             <Paper
               sx={{
                 p: 2,
-                display: 'flex',
-                flexDirection: 'column',
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <Typography variant="h6" gutterBottom>
@@ -79,22 +85,18 @@ const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
               <Typography>
                 Number of workouts a week: {Object.keys(user.workout).length}
               </Typography>
-              {
-                Object.keys(user.workout).map((day, index) => (
-                  <div key={index}>
-                    <Typography sx={{ mt: 1 }}>Day {day}:</Typography>
-                    <Typography>
-                      {listExercisesNames(day)}
-                    </Typography>
-                  </div>
-                ))
-              }
+              {Object.keys(user.workout).map((day, index) => (
+                <div key={index}>
+                  <Typography sx={{ mt: 1 }}>Day {day}:</Typography>
+                  <Typography>{listExercisesNames(day)}</Typography>
+                </div>
+              ))}
             </Paper>
           </Grid>
         </Grid>
       </Container>
     </Box>
   );
-}
+};
 
 export default Dashboard;

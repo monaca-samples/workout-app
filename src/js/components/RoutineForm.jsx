@@ -1,29 +1,29 @@
 import { useState } from "react";
 
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Slider from '@mui/material/Slider';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Slider from "@mui/material/Slider";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-import { userData } from 'js/state/state';
-import { useAtom } from 'jotai/react';
+import { userData } from "js/state/state";
+import { useAtom } from "jotai/react";
 
-import { doc, updateDoc } from "firebase/firestore"; 
-import { db } from 'js/firebase';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "js/firebase";
 
-import { generateRoutine } from 'js/routineGenerator';
+import { generateRoutine } from "js/routineGenerator";
 
 import { env } from "/env";
 
 const RoutineForm = ({ setLoading, setCreated }) => {
-  const steps = ['Basic Details', 'Advanced details'];
+  const steps = ["Basic Details", "Advanced details"];
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -36,66 +36,63 @@ const RoutineForm = ({ setLoading, setCreated }) => {
 
   const [days, setDays] = useState(1);
   const generateDaysMarks = () => {
-    return [1,2,3,4,5,6,7].map((val) => {
-      return {value: val, label: val};
+    return [1, 2, 3, 4, 5, 6, 7].map((val) => {
+      return { value: val, label: val };
     });
-  }
+  };
   const handleDaysSliderChange = (e) => {
     setDays(e.target.value);
-  }
+  };
   const [hours, setHours] = useState(1);
   const generateHoursMarks = () => {
-    return [1,2,3,4,5].map((val) => {
-      return {value: val, label: val};
+    return [1, 2, 3, 4, 5].map((val) => {
+      return { value: val, label: val };
     });
-  }
+  };
   const handleHoursSliderChange = (e) => {
     setHours(e.target.value);
-  }
+  };
   const [firstTime, setFirstTime] = useState(false);
   const handleChangeFirstTime = (event) => {
     setFirstTime(event.target.value);
   };
-  const [goal, setGoal] = useState('');
+  const [goal, setGoal] = useState("");
   const handleChangeGoal = (event) => {
     setGoal(event.target.value);
   };
-  const goals = [
-    'lose weight',
-    'gain muscle',
-  ];
-  const [targetGroup, setTargetGroup] = useState('');
+  const goals = ["lose weight", "gain muscle"];
+  const [targetGroup, setTargetGroup] = useState("");
   const handleChangeTargetGroup = (event) => {
     setTargetGroup(event.target.value);
   };
   const targets = [
-    'upper body',
-    'lower body',
-    'pecs',
-    'back',
-    'shoulders',
-    'arms',
-    'abs',
-    'quadriceps',
-    'hamstrings',
+    "upper body",
+    "lower body",
+    "pecs",
+    "back",
+    "shoulders",
+    "arms",
+    "abs",
+    "quadriceps",
+    "hamstrings",
   ];
 
   const [user, setUser] = useAtom(userData);
-  const docRef = doc(db, 'users', `${user.email}`);
+  const docRef = doc(db, "users", `${user.email}`);
   const uploadData = async (workout) => {
     updateDoc(docRef, { workout: workout });
-  }
+  };
 
   const searchApi = async (id) => {
     const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${encodeURI(id)}`;
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'X-RapidAPI-Key': env.WORKOUT_API_KEY,
-        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
-      }
+        "X-RapidAPI-Key": env.WORKOUT_API_KEY,
+        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+      },
     };
-  
+
     try {
       const response = await fetch(url, options);
       const result = await response.text();
@@ -103,7 +100,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     } catch (error) {
       alert(error);
     }
-  }
+  };
 
   const handleCreate = async () => {
     setLoading(true);
@@ -112,27 +109,27 @@ const RoutineForm = ({ setLoading, setCreated }) => {
       hours,
       firstTime,
       goal,
-      targetGroup
+      targetGroup,
     );
 
     // get actual routine from API
-    const actualRoutine = {}
+    const actualRoutine = {};
     // loop each day of routine
-    for(let i = 0; i < Object.keys(generatedRoutine).length; i++) {
-      actualRoutine[`${i+1}`] = [];
-      for (let j = 0; j < generatedRoutine[`${i+1}`].length; j++) {
-        const exercise = await searchApi(generatedRoutine[`${i+1}`][j])
-        actualRoutine[`${i+1}`].push(exercise);
+    for (let i = 0; i < Object.keys(generatedRoutine).length; i++) {
+      actualRoutine[`${i + 1}`] = [];
+      for (let j = 0; j < generatedRoutine[`${i + 1}`].length; j++) {
+        const exercise = await searchApi(generatedRoutine[`${i + 1}`][j]);
+        actualRoutine[`${i + 1}`].push(exercise);
       }
     }
-    
+
     // save to Firestore and current state user
-    setUser({...userData, workout: actualRoutine});
+    setUser({ ...userData, workout: actualRoutine });
     uploadData(actualRoutine);
 
     setLoading(false);
     setCreated(true);
-  }
+  };
 
   function getStepContent(step) {
     switch (step) {
@@ -168,7 +165,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
               min={1}
               max={5}
             />
-            <Typography gutterBottom sx={{ mt:1 }}>
+            <Typography gutterBottom sx={{ mt: 1 }}>
               Is this your first time exercising?
             </Typography>
             <FormControl sx={{ mt: 1, minWidth: 120 }} size="small" fullWidth>
@@ -191,7 +188,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
             <Typography variant="h6" gutterBottom>
               Advanced details
             </Typography>
-            <Typography gutterBottom sx={{ mt:1 }}>
+            <Typography gutterBottom sx={{ mt: 1 }}>
               What is your main goal?
             </Typography>
             <FormControl sx={{ mt: 1, minWidth: 120 }} size="small" fullWidth>
@@ -202,15 +199,17 @@ const RoutineForm = ({ setLoading, setCreated }) => {
                 label="Goal"
                 onChange={handleChangeGoal}
               >
-                <MenuItem value=""><em>None in particular</em></MenuItem>
-                {
-                  goals.map((goal, index) =>
-                    <MenuItem key={index} value={goal}>{goal}</MenuItem>
-                  )
-                }
+                <MenuItem value="">
+                  <em>None in particular</em>
+                </MenuItem>
+                {goals.map((goal, index) => (
+                  <MenuItem key={index} value={goal}>
+                    {goal}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
-            <Typography gutterBottom sx={{ mt:1 }}>
+            <Typography gutterBottom sx={{ mt: 1 }}>
               What is your target muscle group?
             </Typography>
             <FormControl sx={{ mt: 1, minWidth: 120 }} size="small" fullWidth>
@@ -221,26 +220,26 @@ const RoutineForm = ({ setLoading, setCreated }) => {
                 label="Target muscle group"
                 onChange={handleChangeTargetGroup}
               >
-                <MenuItem value=""><em>None in particular</em></MenuItem>
-                {
-                  targets.map((target, index) =>
-                    <MenuItem key={index} value={target}>{target}</MenuItem>
-                  )
-                }
+                <MenuItem value="">
+                  <em>None in particular</em>
+                </MenuItem>
+                {targets.map((target, index) => (
+                  <MenuItem key={index} value={target}>
+                    {target}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </>
         );
       default:
-        throw new Error('Unknown step');
+        throw new Error("Unknown step");
     }
   }
 
   return (
     <>
-      <Typography variant="h5">
-        Creating Routine...
-      </Typography>
+      <Typography variant="h5">Creating Routine...</Typography>
       <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
         {steps.map((label, index) => (
           <Step key={index}>
@@ -249,13 +248,13 @@ const RoutineForm = ({ setLoading, setCreated }) => {
         ))}
       </Stepper>
       {getStepContent(activeStep)}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
         {activeStep !== 0 && (
           <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
             Back
           </Button>
         )}
-        {activeStep === steps.length-1?
+        {activeStep === steps.length - 1 ? (
           <Button
             variant="contained"
             onClick={handleCreate}
@@ -263,7 +262,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
           >
             Create
           </Button>
-          :
+        ) : (
           <Button
             variant="contained"
             onClick={handleNext}
@@ -271,12 +270,10 @@ const RoutineForm = ({ setLoading, setCreated }) => {
           >
             Next
           </Button>
-        }
+        )}
       </Box>
     </>
   );
-}
+};
 
 export default RoutineForm;
-
-  

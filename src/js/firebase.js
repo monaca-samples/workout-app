@@ -1,6 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, initializeAuth, browserLocalPersistence } from "firebase/auth";
+import {
+  getAuth,
+  initializeAuth,
+  browserLocalPersistence,
+} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 import { env } from "/env";
@@ -12,7 +16,7 @@ const firebaseConfig = {
   projectId: env.FIREBASE_PROJECT_ID,
   storageBucket: env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.FIREBASE_APP_ID
+  appId: env.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
@@ -22,14 +26,14 @@ const app = initializeApp(firebaseConfig);
 const isIos = () => {
   const userAgent = navigator.userAgent;
   return /iPad|iPhone|iPod/i.test(userAgent);
-}
+};
 
 // Initialize Auth
 let auth;
 if (isIos()) {
   auth = initializeAuth(app, {
     persistence: browserLocalPersistence,
-  })
+  });
 } else {
   auth = getAuth(app);
 }

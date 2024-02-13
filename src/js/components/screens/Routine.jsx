@@ -1,25 +1,25 @@
-import { useState } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Carousel from 'react-material-ui-carousel'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
-import Modal from '@mui/material/Modal';
-import CircularProgress from '@mui/material/CircularProgress';
-import Grid from '@mui/material/Grid';
+import { useState } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Carousel from "react-material-ui-carousel";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
+import Modal from "@mui/material/Modal";
+import CircularProgress from "@mui/material/CircularProgress";
+import Grid from "@mui/material/Grid";
 
-import Bar from 'js/components/Bar';
-import Drawer from 'js/components/Drawer';
-import RoutineForm from 'js/components/RoutineForm';
+import Bar from "js/components/Bar";
+import Drawer from "js/components/Drawer";
+import RoutineForm from "js/components/RoutineForm";
 
-import { userData } from 'js/state/state';
+import { userData } from "js/state/state";
 import { useAtomValue } from "jotai/react";
 
-import { CapacitorCalendar } from '@sharryland/capacitor-calendar-plugin';
+import { CapacitorCalendar } from "@sharryland/capacitor-calendar-plugin";
 
 const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
@@ -38,171 +38,171 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
 
   const onCreateRoutine = () => {
     setCreating(true);
-  }
+  };
 
   const [open, setOpen] = useState(false);
   const [currentExercise, setCurrentExercise] = useState(null);
   const handleOpen = (currentExercise) => () => {
     setOpen(true);
     setCurrentExercise(currentExercise);
-  }
+  };
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   const [loading, setLoading] = useState(false);
 
   const listExercisesNames = (day) => {
     let names = "";
     for (let i = 0; i < user.workout[day].length; i++) {
-      if (i === user.workout[day].length-1) {
+      if (i === user.workout[day].length - 1) {
         names += user.workout[day][i].name;
       } else {
         names = names + user.workout[day][i].name + ", ";
       }
     }
-    return names
-  }
+    return names;
+  };
 
   const addCalendarEvent = (key) => {
-    const exercises = listExercisesNames(key)
+    const exercises = listExercisesNames(key);
     const calendarEvent = {
       eventTitle: `Workout day ${key}`,
       eventDescription: `Do this today: ${exercises}`,
-      location: 'Gym',
+      location: "Gym",
     };
-    CapacitorCalendar.saveEventToCalendar(calendarEvent)
-  }
+    CapacitorCalendar.saveEventToCalendar(calendarEvent);
+  };
 
-  return(
+  return (
     <Box>
-      <Bar title={'Routine'} toggleDrawer={toggleDrawer} changeTheme={changeTheme} />
+      <Bar
+        title={"Routine"}
+        toggleDrawer={toggleDrawer}
+        changeTheme={changeTheme}
+      />
       <Drawer drawerAnchor={drawerAnchor} toggleDrawer={toggleDrawer} />
-      {
-        currentExercise ?
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+      {currentExercise ? (
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          sx={{
+            overflow: "scroll",
+          }}
+        >
+          <Box
             sx={{
-              overflow: "scroll",
-            }}
-          >
-            <Box sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
+              position: "absolute",
+              top: "50%",
+              left: "50%",
               width: "75%",
-              transform: 'translate(-50%, -50%)',
-              bgcolor: 'background.paper',
+              transform: "translate(-50%, -50%)",
+              bgcolor: "background.paper",
               boxShadow: 24,
               p: 2,
-            }}>
+            }}
+          >
+            <Box display="flex" justifyContent="center" alignItems="center">
               <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Box
-                  component="img"
-                  src={currentExercise.gifUrl}
-                  sx={{
-                    maxHeight: { xs: 150, md: 150 },
-                  }}
-                >
-                </Box>
-              </Box>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Instructions:
-              </Typography>
-              {
-                currentExercise.instructions.map((instruction, index) => 
-                  <Typography key={index} id={index}>
-                    {index}: {instruction}
-                  </Typography>
-                )
-              }
+                component="img"
+                src={currentExercise.gifUrl}
+                sx={{
+                  maxHeight: { xs: 150, md: 150 },
+                }}
+              ></Box>
             </Box>
-          </Modal>
-          :
-          <></>
-      }
-      { created ?
-        <Container sx={{ pt:10 }}>
-          <Typography variant='h4' gutterBottom>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Instructions:
+            </Typography>
+            {currentExercise.instructions.map((instruction, index) => (
+              <Typography key={index} id={index}>
+                {index}: {instruction}
+              </Typography>
+            ))}
+          </Box>
+        </Modal>
+      ) : (
+        <></>
+      )}
+      {created ? (
+        <Container sx={{ pt: 10 }}>
+          <Typography variant="h4" gutterBottom>
             Your Weekly Routine!
           </Typography>
-          {
-            Object.keys(user.workout).map((key, index) => (
-              <div key={index}>
-                <Grid container direction="row" justifyContent="space-between">
-                  <Typography variant="h5" gutterBottom>
-                    Day {key}
-                  </Typography>
-                  <Button onClick={() => addCalendarEvent(key)}>
-                    Add to calendar
-                  </Button>
-                </Grid>
-                <Carousel
-                  autoPlay={false}
-                  animation="slide"
-                  swipe={true}
-                  navButtonsAlwaysInvisible={true}
-                >
-                  {
-                    user.workout[key].map((exercise, index) => (
-                      <Card key={index}
-                        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                      >
-                        <CardMedia
-                          component="div"
-                          sx={{
-                            pt: '100%',
-                          }}
-                          image={exercise.gifUrl}
-                        />
-                        <CardContent sx={{ flexGrow: 1 }}>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            {exercise.name}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Button onClick={handleOpen(exercise)} size="small">View instructions</Button>
-                        </CardActions>
-                      </Card>
-                    ))
-                  }
-                </Carousel>
-              </div>
-            ))
-
-          }
-        </Container>
-        :
-        (creating ?
-          <Container sx={{ pt: 10 }}>
-          {
-            loading ?
-              <Box
-                sx={{
-                  marginTop: 8,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
+          {Object.keys(user.workout).map((key, index) => (
+            <div key={index}>
+              <Grid container direction="row" justifyContent="space-between">
+                <Typography variant="h5" gutterBottom>
+                  Day {key}
+                </Typography>
+                <Button onClick={() => addCalendarEvent(key)}>
+                  Add to calendar
+                </Button>
+              </Grid>
+              <Carousel
+                autoPlay={false}
+                animation="slide"
+                swipe={true}
+                navButtonsAlwaysInvisible={true}
               >
-                <CircularProgress />
-                <Typography variant="h5" sx={{ mt: 2 }}gutterBottom>Generating routine...</Typography>
-                <Typography>Please wait a minute</Typography>
-              </Box>
-              :
-              <RoutineForm setLoading={setLoading} setCreated={setCreated} />
-          }
-          </Container>
-          :
-          <Container sx={{ pt:10 }}>
-          <Typography variant='h5'>
+                {user.workout[key].map((exercise, index) => (
+                  <Card
+                    key={index}
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <CardMedia
+                      component="div"
+                      sx={{
+                        pt: "100%",
+                      }}
+                      image={exercise.gifUrl}
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {exercise.name}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button onClick={handleOpen(exercise)} size="small">
+                        View instructions
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ))}
+              </Carousel>
+            </div>
+          ))}
+        </Container>
+      ) : creating ? (
+        <Container sx={{ pt: 10 }}>
+          {loading ? (
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+              <Typography variant="h5" sx={{ mt: 2 }} gutterBottom>
+                Generating routine...
+              </Typography>
+              <Typography>Please wait a minute</Typography>
+            </Box>
+          ) : (
+            <RoutineForm setLoading={setLoading} setCreated={setCreated} />
+          )}
+        </Container>
+      ) : (
+        <Container sx={{ pt: 10 }}>
+          <Typography variant="h5">
             You don't have a routine yet, do you want to create one?
           </Typography>
           <Button
@@ -214,10 +214,9 @@ const Routine = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             Create Routine!
           </Button>
         </Container>
-        )
-      }
+      )}
     </Box>
   );
-}
+};
 
 export default Routine;

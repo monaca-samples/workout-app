@@ -1,26 +1,29 @@
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ContrastIcon from '@mui/icons-material/Contrast';
+import Box from "@mui/material/Box";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ContrastIcon from "@mui/icons-material/Contrast";
 
 const Bar = ({ title, toggleDrawer, changeTheme }) => {
-  return(
-    <Box sx={{ flexGrow: 1}}>
-      <AppBar position="fixed" sx={{ 
-        pt: `env(safe-area-inset-top)`,
-        pl: `env(safe-area-inset-left)`,
-        pr: `env(safe-area-inset-right)`
-      }}>
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          pt: `env(safe-area-inset-top)`,
+          pl: `env(safe-area-inset-left)`,
+          pr: `env(safe-area-inset-right)`,
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open-drawer"
-            onClick={ toggleDrawer(true) }
+            onClick={toggleDrawer(true)}
             sx={{ mr: 2 }}
           >
             <MenuIcon />
@@ -33,7 +36,7 @@ const Bar = ({ title, toggleDrawer, changeTheme }) => {
             edge="end"
             color="inherit"
             aria-label="change-theme"
-            onClick={ changeTheme }
+            onClick={changeTheme}
           >
             <ContrastIcon />
           </IconButton>
@@ -41,6 +44,6 @@ const Bar = ({ title, toggleDrawer, changeTheme }) => {
       </AppBar>
     </Box>
   );
-}
+};
 
 export default Bar;

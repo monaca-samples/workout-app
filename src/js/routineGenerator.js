@@ -1,7 +1,7 @@
-const generateRoutine = ( days, hours, firstTime, goal, targetGroup ) => {
+const generateRoutine = (days, hours, firstTime, goal, targetGroup) => {
   const routine = {};
   switch (goal) {
-    case 'lose weight':
+    case "lose weight":
       if (days === 1) {
         if (hours === 1) {
           routine["1"] = ["0685", "0798", "2612", "1160"];
@@ -26,8 +26,8 @@ const generateRoutine = ( days, hours, firstTime, goal, targetGroup ) => {
         routine["3"] = ["1160", "2612", "2311", "3666"];
         routine["4"] = ["0662", "0129", "1476", "0555"];
       }
-    break;
-    case 'gain muscle':
+      break;
+    case "gain muscle":
       if (days === 1) {
         routine["1"] = ["0025", "0027", "0043", "0032"];
       } else if (days === 2) {
@@ -49,8 +49,8 @@ const generateRoutine = ( days, hours, firstTime, goal, targetGroup ) => {
         routine["4"] = ["0025", "0027", "0294", "0231", "0405"];
         routine["5"] = ["0043", "0032", "0585", "0599", "0605"];
       }
-    break;
-    default:      
+      break;
+    default:
       if (days === 1) {
         routine["1"] = ["0025", "0027", "0043", "0032", "0798"];
       } else if (days === 2) {
@@ -72,10 +72,10 @@ const generateRoutine = ( days, hours, firstTime, goal, targetGroup ) => {
         routine["4"] = ["0025", "0027", "0294", "0231", "0405", "0798"];
         routine["5"] = ["0043", "0032", "0585", "0599", "0605", "3666"];
       }
-    break;
+      break;
   }
 
   return routine;
-}
+};
 
-export {generateRoutine};
+export { generateRoutine };

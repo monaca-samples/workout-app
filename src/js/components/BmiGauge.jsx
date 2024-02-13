@@ -1,6 +1,6 @@
 import GaugeChart from "react-gauge-chart";
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 import { useAtomValue } from "jotai/react";
 import { userData } from "js/state/state";
@@ -9,8 +9,11 @@ const BmiGauge = () => {
   const user = useAtomValue(userData);
 
   const calculateBMI = () => {
-    return (user.weights[user.weights.length-1].weight/((user.height/100)**2)).toFixed(2)
-  }
+    return (
+      user.weights[user.weights.length - 1].weight /
+      (user.height / 100) ** 2
+    ).toFixed(2);
+  };
 
   const gageCalc = (bmi) => {
     let result = 0;
@@ -32,42 +35,41 @@ const BmiGauge = () => {
     return (
       (bmi - lowerBound) / (upperBound - lowerBound) / 5 + segmentAdjustment
     );
-  }
+  };
 
   const getTitle = (bmi) => {
     if (bmi < 18.5) {
-      return 'Underweight'
+      return "Underweight";
     } else if (bmi >= 18.5 && bmi < 25) {
-      return 'Normal'
+      return "Normal";
     } else if (bmi >= 25 && bmi < 30) {
-      return 'Overweight'
+      return "Overweight";
     } else if (bmi >= 30 && bmi < 35) {
-      return 'Obese'
+      return "Obese";
     } else if (bmi >= 35) {
-      return 'Extremely Obese'
+      return "Extremely Obese";
     }
-  }
+  };
 
-  return(
+  return (
     <>
-      <Typography variant="h6">
-        BMI
-      </Typography>
-      <GaugeChart id="bmi-chart" 
-        nrOfLevels={5} 
+      <Typography variant="h6">BMI</Typography>
+      <GaugeChart
+        id="bmi-chart"
+        nrOfLevels={5}
         percent={gageCalc(calculateBMI())}
         colors={["#ffa100", "#44ff00", "#fff000", "#ffa100", "#ff0000"]}
         arcPadding={0}
         cornerRadius={0}
         hideText={true}
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
-        <Typography variant="h6">
-          {getTitle(calculateBMI())}
-        </Typography>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <Typography variant="h6">{getTitle(calculateBMI())}</Typography>
       </Box>
     </>
   );
-}
+};
 
 export default BmiGauge;

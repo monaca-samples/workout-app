@@ -1,10 +1,7 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState } from "react";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import Login from "js/components/screens/Login";
 import SignUp from "js/components/screens/SignUp";
@@ -13,7 +10,7 @@ import Profile from "js/components/screens/Profile";
 import Routine from "js/components/screens/Routine";
 import SearchExercises from "js/components/screens/SearchExercises";
 
-const App =() => {
+const App = () => {
   const [drawerAnchor, setDrawerAnchor] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -34,7 +31,7 @@ const App =() => {
     } else {
       setTheme("light");
     }
-  }
+  };
 
   const darkTheme = createTheme({
     palette: {
@@ -53,44 +50,52 @@ const App =() => {
     },
     {
       path: "/dashboard",
-      element: <Dashboard
-                  drawerAnchor={drawerAnchor}
-                  toggleDrawer={toggleDrawer}
-                  changeTheme={changeTheme}
-                />,
+      element: (
+        <Dashboard
+          drawerAnchor={drawerAnchor}
+          toggleDrawer={toggleDrawer}
+          changeTheme={changeTheme}
+        />
+      ),
     },
     {
       path: "/profile",
-      element: <Profile  
-                drawerAnchor={drawerAnchor}
-                toggleDrawer={toggleDrawer}
-                changeTheme={changeTheme}
-              />,
+      element: (
+        <Profile
+          drawerAnchor={drawerAnchor}
+          toggleDrawer={toggleDrawer}
+          changeTheme={changeTheme}
+        />
+      ),
     },
     {
       path: "/routine",
-      element: <Routine
-                drawerAnchor={drawerAnchor}
-                toggleDrawer={toggleDrawer}
-                changeTheme={changeTheme}
-              />,
+      element: (
+        <Routine
+          drawerAnchor={drawerAnchor}
+          toggleDrawer={toggleDrawer}
+          changeTheme={changeTheme}
+        />
+      ),
     },
     {
       path: "/search-exercises",
-      element: <SearchExercises
-                  drawerAnchor={drawerAnchor}
-                  toggleDrawer={toggleDrawer}
-                  changeTheme={changeTheme}
-                />,
+      element: (
+        <SearchExercises
+          drawerAnchor={drawerAnchor}
+          toggleDrawer={toggleDrawer}
+          changeTheme={changeTheme}
+        />
+      ),
     },
   ]);
 
-  return(
+  return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
-}
+};
 
 export default App;
