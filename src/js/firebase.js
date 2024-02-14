@@ -9,6 +9,18 @@ import { getFirestore } from "firebase/firestore";
 
 import { env } from "/env";
 
+function isEmpty(obj) {
+  for (const prop in obj) {
+    if (Object.hasOwn(obj, prop)) {
+      return false;
+    }
+  }
+  return true;
+}
+if (isEmpty(env)) {
+  alert("Environment variables are not configured. The app will fail. Refer to https://github.com/juan-serrano-soria/workout-app?tab=readme-ov-file#setup for more information")
+}
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: env.FIREBASE_API_KEY,

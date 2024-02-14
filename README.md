@@ -13,7 +13,7 @@ App that let's you monitor your weight, create a workout routine, search for exe
 
 
 ## Setup
-You have to setup environment variables for the project to work. Create an `env.js` file inside the `/src` folder with the following content.
+You have to setup environment variables for the project to work. Edit [`env.js`](https://github.com/juan-serrano-soria/workout-app/blob/main/src/env.js) with the following content.
 ``` javascript
 const env = {
   "WORKOUT_API_KEY": "...",
