@@ -15,6 +15,10 @@ const BmiGauge = () => {
     ).toFixed(2);
   };
 
+  /**
+   * Returns a value between 0 and 1 to position the needle in the gauge chart
+   * according to the bmi value
+   */
   const gageCalc = (bmi) => {
     let result = 0;
     if (bmi < 18.5) {

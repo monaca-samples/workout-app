@@ -15,6 +15,7 @@ import BmiGauge from "js/components/BmiGauge";
 const Dashboard = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const user = useAtomValue(userData);
 
+  // Generates a readable string concatenation of all exercises in a day of the routine
   const listExercisesNames = (day) => {
     let names = "";
     for (let i = 0; i < user.workout[day].length; i++) {

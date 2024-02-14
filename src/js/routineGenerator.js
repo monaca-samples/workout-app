@@ -1,3 +1,8 @@
+/**
+ * This function generates a workout routine in the shape of an array of IDs.
+ * This IDs are to be used with ExerciseDB (https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb)
+ * and each represents an exercise.
+ */
 const generateRoutine = (days, hours, goal) => {
   const routine = {};
   switch (goal) {

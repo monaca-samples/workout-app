@@ -106,9 +106,8 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     setLoading(true);
     const generatedRoutine = generateRoutine(days, hours, goal);
 
-    // get actual routine from API
+    // populate actual routine with exercised data from API
     const actualRoutine = {};
-    // loop each day of routine
     for (let i = 0; i < Object.keys(generatedRoutine).length; i++) {
       actualRoutine[`${i + 1}`] = [];
       for (let j = 0; j < generatedRoutine[`${i + 1}`].length; j++) {

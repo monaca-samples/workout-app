@@ -28,6 +28,7 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  // Use to update exercises in user's routine, since gifUrl expires every 24 hours
   const updateWithAPI = async (id, workoutDay) => {
     const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${encodeURI(id)}`;
     const options = {
@@ -52,9 +53,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user; // later see what to do with this
-
+      .then(() => {
         const docRef = doc(db, "users", `${email}`);
         getDoc(docRef)
           .then((docSnap) => {
