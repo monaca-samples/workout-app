@@ -104,13 +104,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
 
   const handleCreate = async () => {
     setLoading(true);
-    const generatedRoutine = generateRoutine(
-      days,
-      hours,
-      firstTime,
-      goal,
-      targetGroup,
-    );
+    const generatedRoutine = generateRoutine(days, hours, goal);
 
     // get actual routine from API
     const actualRoutine = {};

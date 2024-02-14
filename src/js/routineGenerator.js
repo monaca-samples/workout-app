@@ -1,4 +1,4 @@
-const generateRoutine = (days, hours, firstTime, goal, targetGroup) => {
+const generateRoutine = (days, hours, goal) => {
   const routine = {};
   switch (goal) {
     case "lose weight":

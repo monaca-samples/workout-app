@@ -18,7 +18,9 @@ function isEmpty(obj) {
   return true;
 }
 if (isEmpty(env)) {
-  alert("Environment variables are not configured. The app will fail. Refer to https://github.com/juan-serrano-soria/workout-app?tab=readme-ov-file#setup for more information")
+  alert(
+    "Environment variables are not configured. The app will fail. Refer to https://github.com/juan-serrano-soria/workout-app?tab=readme-ov-file#setup for more information",
+  );
 }
 
 // Your web app's Firebase configuration
