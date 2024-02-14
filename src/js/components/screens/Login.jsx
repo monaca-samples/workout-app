@@ -84,7 +84,7 @@ const Login = () => {
           });
       })
       .catch((error) => {
-        alert("Auth failed\n", error.code + " " + error.message);
+        alert("Auth failed\n" + error.code + " " + error.message);
       });
   };
 
