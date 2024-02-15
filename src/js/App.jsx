@@ -33,7 +33,7 @@ const App = () => {
     }
   };
 
-  const darkTheme = createTheme({
+  const selectedTheme = createTheme({
     palette: {
       mode: theme,
     },
@@ -91,7 +91,7 @@ const App = () => {
   ]);
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={selectedTheme}>
       <CssBaseline />
       <RouterProvider router={router} />
     </ThemeProvider>
