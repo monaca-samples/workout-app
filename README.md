@@ -27,9 +27,9 @@ const env = {
 
 export { env }
 ```
-For the `WORKOUT_API_KEY` go to [RapidAPI ExerciseDB page](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/pricing) and subscribe for the Basic Plan (it is free) to acquire the API key.
+For the `WORKOUT_API_KEY` , [create a RapidAPI account](https://rapidapi.com/auth/sign-up), log in and go to [RapidAPI ExerciseDB page](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/pricing) (only visible if logged in). Subscribe for the Basic Plan (it is free) to acquire the API key.
 
-For firebase related variables, when creating and configurig a project you will get the corresponing firebaseConfig with all information.
+For firebase related variables, when creating and configuring a project you will get the corresponing firebaseConfig with all information.
 
 ## How to run
 To run the application in web mode, use `monaca preview`. You can check how to install Monaca cli [here](https://en.docs.monaca.io/tutorials/monaca_cli).
