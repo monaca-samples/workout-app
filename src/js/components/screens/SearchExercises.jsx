@@ -31,14 +31,29 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     setSearchText(e.target.value);
   };
 
-  const onSearch = async () => {
-    if (searchText.trim().length === 0) {
-      alert("Please input something");
-      return;
-    }
+  const [searchingAll, setSearchingAll] = useState(false);
 
+  // to manage pagination of results
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(10);
+  const onSearchMore = async () => {
+    setStart((start) => start + 10);
+    setEnd((end) => end + 10);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  const onSearch = async () => {
     setExercises([]);
-    let result = await searchApi("name", searchText.toLowerCase(), null);
+    let result;
+    if (searchText.trim().length === 0) {
+      setSearchingAll(true);
+      result = await searchApi("all", searchText.toLowerCase(), null);
+    } else {
+      result = await searchApi("name", searchText.toLowerCase(), null);
+      setStart(0);
+      setEnd(10);
+      setSearchingAll(false);
+    }
 
     // filter results
     if (target.length != 0) {
@@ -313,7 +328,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
 
       <Container sx={{ py: 4 }} maxWidth="md">
         <Grid container spacing={2}>
-          {exercises.map((exercise, index) => (
+          {exercises.slice(start, end).map((exercise, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <Card
                 sx={{
@@ -344,6 +359,20 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
             </Grid>
           ))}
         </Grid>
+        {searchingAll ? (
+          <>
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={onSearchMore}
+              sx={{ mt: 2 }}
+            >
+              Search more!
+            </Button>
+          </>
+        ) : (
+          <></>
+        )}
       </Container>
     </Box>
   );

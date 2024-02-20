@@ -2,6 +2,7 @@ import { env } from "/env";
 
 const idUrl = "https://exercisedb.p.rapidapi.com/exercises/exercise/";
 const nameUrl = "https://exercisedb.p.rapidapi.com/exercises/name/";
+const allUrl = "https://exercisedb.p.rapidapi.com/exercises?limit=1323";
 
 const searchApi = async (type, param, workoutDay) => {
   let url;
@@ -9,6 +10,8 @@ const searchApi = async (type, param, workoutDay) => {
     url = `${idUrl}${encodeURI(param)}`;
   } else if (type === "name") {
     url = `${nameUrl}${encodeURI(param)}`;
+  } else if (type === "all") {
+    url = `${allUrl}`;
   }
 
   const options = {
