@@ -137,7 +137,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
             </Typography>
             <Slider
               aria-label="days-a-week"
-              defaultValue={days}
+              value={days}
               onChange={handleDaysSliderChange}
               valueLabelDisplay="auto"
               step={1}
@@ -150,7 +150,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
             </Typography>
             <Slider
               aria-label="hours-a-day"
-              defaultValue={hours}
+              value={hours}
               onChange={handleHoursSliderChange}
               valueLabelDisplay="auto"
               step={1}
