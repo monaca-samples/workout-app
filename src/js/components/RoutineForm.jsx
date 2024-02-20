@@ -102,7 +102,7 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     }
 
     // save to Firestore and current state user
-    setUser({ ...userData, workout: actualRoutine });
+    setUser({ ...user, workout: actualRoutine });
     uploadData(actualRoutine);
 
     setLoading(false);
