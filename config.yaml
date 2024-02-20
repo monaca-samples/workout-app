@@ -7,21 +7,6 @@ platforms:
         target: manifest/application/activity
         attrs:
           'android:screenOrientation': unspecified
-      -
-        file: AndroidManifest.xml
-        target: manifest
-        inject: |
-          <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-      -
-        file: AndroidManifest.xml
-        target: manifest
-        inject: |
-          <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-      -
-        file: AndroidManifest.xml
-        target: manifest
-        inject: |
-          <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   ios:
     targets:
       App:
@@ -40,6 +25,3 @@ platforms:
                   - UIInterfaceOrientationPortrait
                   - UIInterfaceOrientationLandscapeLeft
                   - UIInterfaceOrientationLandscapeRight
-              - NSCameraUsageDescription: 'Take photos'
-              - NSPhotoLibraryAddUsageDescription: 'Add photos'
-              - NSPhotoLibraryUsageDescription: 'Access photos'
