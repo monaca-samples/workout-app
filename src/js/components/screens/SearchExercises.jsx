@@ -21,7 +21,7 @@ import Modal from "@mui/material/Modal";
 import Bar from "js/components/Bar";
 import Drawer from "js/components/Drawer";
 
-import { env } from "/env";
+import { searchApi } from "js/workoutApi";
 
 const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
   const [searchText, setSearchText] = useState("");
@@ -31,25 +31,6 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     setSearchText(e.target.value);
   };
 
-  const searchApi = async (name) => {
-    const url = `https://exercisedb.p.rapidapi.com/exercises/name/${encodeURI(name)}`;
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": env.WORKOUT_API_KEY,
-        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.text();
-      return JSON.parse(result);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
   const onSearch = async () => {
     if (searchText.trim().length === 0) {
       alert("Please input something");
@@ -57,7 +38,7 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     }
 
     setExercises([]);
-    let result = await searchApi(searchText.toLowerCase());
+    let result = await searchApi("name", searchText.toLowerCase(), null);
 
     // filter results
     if (target.length != 0) {

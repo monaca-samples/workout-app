@@ -20,7 +20,7 @@ import { db } from "js/firebase";
 
 import { generateRoutine } from "js/routineGenerator";
 
-import { env } from "/env";
+import { searchApi } from "js/workoutApi";
 
 const RoutineForm = ({ setLoading, setCreated }) => {
   const steps = ["Basic Details", "Advanced details"];
@@ -83,25 +83,6 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     updateDoc(docRef, { workout: workout });
   };
 
-  const searchApi = async (id) => {
-    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${encodeURI(id)}`;
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": env.WORKOUT_API_KEY,
-        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.text();
-      return JSON.parse(result);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
   const handleCreate = async () => {
     setLoading(true);
     const generatedRoutine = generateRoutine(days, hours, goal);
@@ -111,7 +92,11 @@ const RoutineForm = ({ setLoading, setCreated }) => {
     for (let i = 0; i < Object.keys(generatedRoutine).length; i++) {
       actualRoutine[`${i + 1}`] = [];
       for (let j = 0; j < generatedRoutine[`${i + 1}`].length; j++) {
-        const exercise = await searchApi(generatedRoutine[`${i + 1}`][j]);
+        const exercise = await searchApi(
+          "id",
+          generatedRoutine[`${i + 1}`][j],
+          null,
+        );
         actualRoutine[`${i + 1}`].push(exercise);
       }
     }

@@ -14,7 +14,7 @@ import { useState } from "react";
 import { userData } from "js/state/state";
 import { useSetAtom } from "jotai/react";
 
-import { env } from "/env";
+import { searchApi } from "js/workoutApi";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,27 +26,6 @@ const Login = () => {
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
-  };
-
-  // Use to update exercises in user's routine, since gifUrl expires every 24 hours
-  const updateWithAPI = async (id, workoutDay) => {
-    const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${encodeURI(id)}`;
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": env.WORKOUT_API_KEY,
-        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.text();
-      workoutDay.push(JSON.parse(result));
-      return JSON.parse(result);
-    } catch (error) {
-      alert(error);
-    }
   };
 
   const setUserData = useSetAtom(userData);
@@ -63,7 +42,8 @@ const Login = () => {
             for (let i = 0; i < Object.keys(oldWorkout).length; i++) {
               newWorkout[`${i + 1}`] = [];
               for (let j = 0; j < oldWorkout[`${i + 1}`].length; j++) {
-                updateWithAPI(
+                searchApi(
+                  "id",
                   oldWorkout[`${i + 1}`][j].id,
                   newWorkout[`${i + 1}`],
                 );
