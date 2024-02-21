@@ -25,3 +25,4 @@ platforms:
                   - UIInterfaceOrientationPortrait
                   - UIInterfaceOrientationLandscapeLeft
                   - UIInterfaceOrientationLandscapeRight
+              - NSCalendarsUsageDescription: 'Access Calendar'
