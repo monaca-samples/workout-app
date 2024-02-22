@@ -46,7 +46,9 @@ const Login = () => {
                   "id",
                   oldWorkout[`${i + 1}`][j].id,
                   newWorkout[`${i + 1}`],
-                );
+                ).catch((error) => {
+                  navigate("/error");
+                });
               }
             }
 

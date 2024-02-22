@@ -17,6 +17,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Modal from "@mui/material/Modal";
+import { useNavigate } from "react-router-dom";
 
 import Bar from "js/components/Bar";
 import Drawer from "js/components/Drawer";
@@ -24,6 +25,8 @@ import Drawer from "js/components/Drawer";
 import { searchApi } from "js/workoutApi";
 
 const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
+  const navigate = useNavigate();
+
   const [searchText, setSearchText] = useState("");
   const [exercises, setExercises] = useState([]);
 
@@ -47,12 +50,20 @@ const SearchExercises = ({ drawerAnchor, toggleDrawer, changeTheme }) => {
     let result;
     if (searchText.trim().length === 0) {
       setSearchingAll(true);
-      result = await searchApi("all", searchText.toLowerCase(), null);
+      try {
+        result = await searchApi("all", searchText.toLowerCase(), null);
+      } catch (error) {
+        navigate("/error");
+      }
     } else {
-      result = await searchApi("name", searchText.toLowerCase(), null);
-      setStart(0);
-      setEnd(10);
-      setSearchingAll(false);
+      try {
+        result = await searchApi("name", searchText.toLowerCase(), null);
+        setStart(0);
+        setEnd(10);
+        setSearchingAll(false);
+      } catch (error) {
+        navigate("/error");
+      }
     }
 
     // filter results

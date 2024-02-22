@@ -22,16 +22,15 @@ const searchApi = async (type, param, workoutDay) => {
     },
   };
 
-  try {
-    const response = await fetch(url, options);
-    const result = await response.text();
-    if (workoutDay != null) {
-      workoutDay.push(JSON.parse(result));
-    }
-    return JSON.parse(result);
-  } catch (error) {
-    alert(error);
+  const response = await fetch(url, options);
+  const result = await response.text();
+  if (JSON.parse(result).hasOwnProperty("message")) {
+    throw Error("Monthly Quota exceeded!");
   }
+  if (workoutDay != null) {
+    workoutDay.push(JSON.parse(result));
+  }
+  return JSON.parse(result);
 };
 
 export { searchApi };

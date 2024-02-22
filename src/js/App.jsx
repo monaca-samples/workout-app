@@ -9,6 +9,7 @@ import Dashboard from "js/components/screens/Dashboard";
 import Profile from "js/components/screens/Profile";
 import Routine from "js/components/screens/Routine";
 import SearchExercises from "js/components/screens/SearchExercises";
+import Error from "js/components/screens/Error";
 
 const App = () => {
   const [drawerAnchor, setDrawerAnchor] = useState(false);
@@ -87,6 +88,10 @@ const App = () => {
           changeTheme={changeTheme}
         />
       ),
+    },
+    {
+      path: "/error",
+      element: <Error />,
     },
   ]);
 
