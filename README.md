@@ -27,9 +27,7 @@ const env = {
 
 export { env }
 ```
-~~For the `WORKOUT_API_KEY` , [create a RapidAPI account](https://rapidapi.com/auth/sign-up), log in and go to [RapidAPI ExerciseDB page](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/pricing). Subscribe for the Basic Plan (it is free) to acquire the API key.~~
-
-The RapidAPI ExerciseDB API used has become private, so new users cannot access it. In the meantime, a key will be already available in `env.js`
+For the `WORKOUT_API_KEY` , [create a RapidAPI account](https://rapidapi.com/auth/sign-up), log in and go to [RapidAPI ExerciseDB page](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/pricing). Subscribe for the Basic Plan (it is free) to acquire the API key.
 
 For firebase related variables, when creating and configuring a project you will get the corresponing firebaseConfig with all information.
 
