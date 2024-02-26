@@ -49,7 +49,7 @@ And finally you can open the project and run normally in your device / simulator
 `yarn cap open ios` or `yarn cap open android`
 
 ## Blog Post
-You can read more about this project and how it was developed [here](https://cat-bounce.com/) (TODO: fix with actual link!)
+You can read more about this project and how it was developed [here](https://medium.com/p/9b59e694bc6b).
 
 
 ## Demo
